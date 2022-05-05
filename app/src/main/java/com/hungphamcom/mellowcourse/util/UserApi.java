@@ -3,6 +3,7 @@ package com.hungphamcom.mellowcourse.util;
 import android.app.Application;
 
 import com.google.firebase.database.Exclude;
+import com.google.firebase.database.PropertyName;
 
 public class UserApi extends Application {
     private String username;
@@ -34,16 +35,13 @@ public class UserApi extends Application {
         this.username = username;
     }
 
-    @Exclude
     public String getUserId() {
         return userId;
     }
 
-
     public void setUserId(String userId) {
         this.userId = userId;
     }
-
 
     public String getStatus() {
         return status;

@@ -1,7 +1,5 @@
 package com.hungphamcom.mellowcourse;
 
-import static android.content.ContentValues.TAG;
-
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;

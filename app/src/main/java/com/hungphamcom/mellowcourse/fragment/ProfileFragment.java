@@ -23,24 +23,14 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.auth.User;
 import com.google.firebase.storage.StorageReference;
-import com.google.firestore.v1.WriteResult;
 import com.hungphamcom.mellowcourse.MainActivity;
 import com.hungphamcom.mellowcourse.R;
 import com.hungphamcom.mellowcourse.util.UserApi;
 import com.hungphamcom.mellowcourse.util.Util;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class ProfileFragment extends Fragment implements View.OnClickListener {
     private FirebaseAuth firebaseAuth;
@@ -56,7 +46,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     public static final String KEY_STATUS ="status";
 
-    private String userid;
+    private String id;
 
     private TextView signOutBtn;
     private TextView becomeSeller;
@@ -82,7 +72,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         signOutBtn=view.findViewById(R.id.sign_out_profile);
         becomeSeller=view.findViewById(R.id.become_seller_profile);
 
-        userid=UserApi.getInstance().getUserId();
+        id=UserApi.getInstance().getUserId().toString().trim();
 
         signOutBtn.setOnClickListener(this);
         becomeSeller.setOnClickListener(this);
@@ -139,7 +129,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     }
 
     private void becomeASeller() {
-        collectionReference.whereEqualTo("userId",userid)
+        collectionReference.whereEqualTo("userId",id)
                     .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                 @Override
                 public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -148,8 +138,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                         for(QueryDocumentSnapshot users : queryDocumentSnapshots){
                             UserApi userApi= users.toObject(UserApi.class);
                             userApi.setStatus(Util.KEY_SELLER);
-                        }
-                    }
+                       }
+                  }
 
                 }
             }).addOnFailureListener(new OnFailureListener() {
