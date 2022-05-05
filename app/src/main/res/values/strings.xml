@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">MellowCourse</string>
+    <string name="hello_again">Hello Again!</string>
+    <string name="welcome_back_we_miss_you_so_much">Welcome back. We miss you so much !</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="forget_password">Forget Password</string>
+    <string name="not_a_member">Not a member ?</string>
+    <string name="name_hint">Name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="create_text">CREATE ACCOUNT</string>
+    <string name="have_account_sign_in">Have an account? Sign In</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="just_buy">Just Buy</string>
+    <string name="it_man">It Man</string>
+    <string name="Loren_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Diam egestas nisi, amet lobortis id tortor, est amet.</string>
+    <string name="Loren_ipsunP2">Tincidunt felis sagittis, amet lorem neque quam nibh mauris. Ut at et mauris est semper nisl, pulvinar. Est neque sem tincidunt placerat vulputate bibendum facilisis. At molestie euismod leo tellus vel urna.</string>
+    <string name="learn_more">Learn more</string>
+    <string name="Buy_Now">Buy Now</string>
+    <string name="best_seller">Best Seller</string>
+    <string name="add_item">Add Item</string>
+    <string name="back_to_main_screen">Back to Main Screen</string>
+    <string name="item_name">Item Name</string>
+    <string name="price_add_new_item">Price ($)</string>
+    <string name="item_description">Item Description</string>
+    <string name="no_item_in_shop">No Item In Shop</string>
+    <string name="become_seller">Become Seller</string>
+    <string name="sign_out">Sign Out</string>
+</resources>

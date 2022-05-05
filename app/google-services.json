@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "545345137287",
+    "project_id": "mellowcourse",
+    "storage_bucket": "mellowcourse.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:545345137287:android:85bf07c7593f36516ea622",
+        "android_client_info": {
+          "package_name": "com.hungphamcom.mellowcourse"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "545345137287-amu301cd5vcdj9q4da65k1qra5ai12hg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxhhWu8Ys27eTBUcCwmYQTnBlmXZIzx14"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "545345137287-amu301cd5vcdj9q4da65k1qra5ai12hg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary_MC_1">#292723</color>
+    <color name="primary_MC_2">#1B1A17</color>
+    <color name="primary_MC_3">#0F0F0D</color>
+    <color name="secondary_MC_1">#FFAF00</color>
+    <color name="secondary_MC_2">#F0A500</color>
+    <color name="secondary_MC_3">#E39C00</color>
+    <color name="accent_MC_1">#F55820</color>
+    <color name="accent_MC_2">#E45826</color>
+    <color name="accent_MC_3">#CC4F22</color>
+    <color name="accent_MC_4">#F2DDB8</color>
+    <color name="accent_MC_5">#E6D5B8</color>
+    <color name="accent_MC_6">#D6C6AB</color>
+    <color name="grey_MC_100">#F4F4F4</color>
+    <color name="grey_MC_200">#E0D1B3</color>
+    <color name="grey_MC_300">#D7C092</color>
+    <color name="grey_MC_500">#9B8A57</color>
+    <color name="grey_MC_700">#786F54</color>
+    <color name="grey_MC_900">#4D4A44</color>
+    <color name="grey_MC_1100">#2B2A27</color>
+</resources>

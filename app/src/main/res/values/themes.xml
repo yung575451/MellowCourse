@@ -1,0 +1,21 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.MellowCourse" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primary_MC_1</item>
+        <item name="colorPrimaryVariant">@color/primary_MC_2</item>
+        <item name="colorOnPrimary">@color/secondary_MC_1</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/secondary_MC_1</item>
+        <item name="colorSecondaryVariant">@color/secondary_MC_2</item>
+        <item name="colorOnSecondary">@color/accent_MC_1</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="MyTabLayoutTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">@font/montserrat_regular</item>
+    </style>
+</resources>

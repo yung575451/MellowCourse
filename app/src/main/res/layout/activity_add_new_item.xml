@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/primary_MC_1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".add_new_item">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/top_menu_add_item_screen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:backgroundTint="#0F0F0D"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/logo_mainScreen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|start"
+            android:paddingStart="21dp"
+            android:paddingTop="14dp"
+            android:paddingEnd="21dp"
+            android:paddingBottom="14dp"
+            app:srcCompat="@drawable/ic_group_13" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|end"
+            android:layout_marginEnd="20dp"
+            android:divider="@drawable/empty_tall_divider"
+            android:orientation="horizontal"
+            android:showDividers="middle">
+
+            <ImageView
+                android:id="@+id/addItemTaskBar_addItemScreen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                app:srcCompat="@drawable/ic_plus_sign_mainscreen" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                app:srcCompat="@drawable/ic_search_normal" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                app:srcCompat="@drawable/ic_frame_48" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                app:srcCompat="@drawable/ic_clarity_notification_line" />
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/add_imageView_add_item_screen"
+        android:layout_width="match_parent"
+        android:layout_height="218dp"
+        android:background="@color/grey_MC_100"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/top_menu_add_item_screen"
+        app:layout_constraintVertical_bias="0.011" />
+
+    <ImageView
+        android:id="@+id/cameraButton_add_item_screen"
+        android:layout_width="68dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="76dp"
+        android:src="@android:drawable/ic_menu_camera"
+        app:layout_constraintBottom_toBottomOf="@+id/add_imageView_add_item_screen"
+        app:layout_constraintEnd_toEndOf="@+id/add_imageView_add_item_screen"
+        app:layout_constraintStart_toStartOf="@id/add_imageView_add_item_screen"
+        app:layout_constraintTop_toTopOf="@+id/add_imageView_add_item_screen"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <LinearLayout
+        android:layout_width="357dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintVertical_bias=".3"
+        app:layout_constraintBottom_toTopOf="@+id/back_to_main_screen_addItemScreen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/add_imageView_add_item_screen">
+        <TextView
+            android:id="@+id/seller_name_add_item_screen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Eric"
+            android:textColor="@color/secondary_MC_1"
+            android:textSize="32sp"
+            android:fontFamily="@font/nunito_regular"/>
+
+
+        <EditText
+            android:id="@+id/item_name_add_item_screen"
+            android:layout_width="match_parent"
+            android:layout_height="41dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/white_description_box_add_item"
+            android:ems="10"
+            android:maxLines="1"
+            android:fontFamily="@font/opensans_regular"
+            android:hint="@string/item_name"
+            android:inputType="textPersonName"
+            android:paddingStart="15dp"
+            android:textColor="@color/secondary_MC_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/add_imageView_add_item_screen"
+            tools:ignore="RtlSymmetry" />
+
+        <EditText
+                android:id="@+id/item_price_add_item_screen"
+                android:layout_width="match_parent"
+                android:layout_height="41dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/white_description_box_add_item"
+                android:ems="10"
+                android:maxLines="1"
+                android:fontFamily="@font/opensans_regular"
+                android:hint="@string/price_add_new_item"
+                android:paddingStart="15dp"
+                android:textColor="#FFAF00"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/item_name_add_item_screen"
+            tools:ignore="RtlSymmetry" />
+
+        <EditText
+            android:id="@+id/item_description_add_item_screen"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="12dp"
+            android:gravity="start"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:background="@drawable/white_description_box_add_item"
+            android:ems="10"
+            android:fontFamily="@font/opensans_regular"
+            android:hint="@string/item_description"
+            android:paddingStart="15dp"
+            android:textColor="#FFAF00"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_name_add_item_screen"
+            tools:ignore="RtlSymmetry" />
+
+    </LinearLayout>
+
+
+
+    <ProgressBar
+        android:id="@+id/progressBar_add_item"
+        style="?android:attr/progressBarStyle"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view_contain_add_button"
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        app:cardCornerRadius="100dp"
+        android:backgroundTint="@color/primary_MC_3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressBar_add_item"
+        app:layout_constraintVertical_bias="0.9">
+
+        <Button
+            android:gravity="center"
+            android:id="@+id/addItem_addItemScreen"
+            android:textColor="@color/accent_MC_1"
+            android:background="@android:color/transparent"
+            android:text="@string/add_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold" />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:id="@+id/back_to_main_screen_addItemScreen"
+        android:textColor="@color/grey_MC_100"
+        android:text="@string/back_to_main_screen"
+        android:textAllCaps="true"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito_light"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:background="@drawable/yellow_outline"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        app:layout_constraintBottom_toTopOf="@id/card_view_contain_add_button"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintStart_toStartOf="@id/card_view_contain_add_button"
+        app:layout_constraintEnd_toEndOf="@id/card_view_contain_add_button"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

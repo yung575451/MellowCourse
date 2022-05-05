@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="5dp"
+
+        android:layout_centerInParent="true"
+        android:background="@drawable/pop_up_box_are_you_sure">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Do you want to become a seller ?"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:textColor="@color/primary_MC_1"
+            android:fontFamily="@font/nunito_regular"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="8dp">
+            <TextView
+                android:id="@+id/no_pop_up_option"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No"
+                android:layout_weight="1"
+                android:background="@drawable/pop_up_box"
+                android:textColor="@color/secondary_MC_1"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:layout_marginEnd="4dp"/>
+
+            <TextView
+                android:id="@+id/yes_pop_up_option"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes"
+                android:layout_weight="1"
+                android:background="@drawable/pop_up_box"
+                android:textColor="@color/secondary_MC_1"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:layout_marginStart="4dp"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

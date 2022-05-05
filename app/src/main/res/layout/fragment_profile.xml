@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.ProfileFragment"
+    android:background="#292723">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/avatar"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_above="@id/become_seller_profile"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="35dp"
+            android:background="@drawable/user_avatar_profile" />
+
+        <TextView
+            android:id="@+id/become_seller_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="70dp"
+            android:background="@drawable/profile_box_option_setting"
+            android:fontFamily="@font/nunito_regular"
+            android:paddingStart="15dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:text="@string/become_seller"
+            android:textColor="@color/grey_MC_100"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/become_seller_profile"
+            android:layout_alignEnd="@id/become_seller_profile"
+            android:layout_alignBottom="@id/become_seller_profile"
+            android:layout_marginEnd="5dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/ic_iconoir_nav_arrow_right"/>
+
+        <TextView
+            android:id="@+id/sign_out_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="70dp"
+            android:fontFamily="@font/nunito_regular"
+            android:paddingStart="15dp"
+            android:layout_below="@id/become_seller_profile"
+            android:background="@drawable/profile_box_option_setting"
+            android:paddingTop="6dp"
+            android:layout_marginTop="15dp"
+            android:paddingBottom="6dp"
+            android:text="@string/sign_out"
+            android:textColor="@color/grey_MC_100"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/sign_out_profile"
+            android:layout_alignEnd="@id/sign_out_profile"
+            android:layout_alignBottom="@id/sign_out_profile"
+            android:layout_marginEnd="5dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/ic_iconoir_nav_arrow_right"/>
+
+
+
+
+    </RelativeLayout>
+
+</FrameLayout>

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="107dp"
+    android:background="@color/primary_MC_1">
+
+    <ImageView
+        android:id="@+id/item_image_shop_fragment"
+        android:layout_width="109dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginStart="12dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/item_title_shop_fragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:fontFamily="@font/nunito_regular"
+        android:gravity="start"
+        android:text="Chicken"
+        android:textColor="@color/secondary_MC_1"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/item_image_shop_fragment"
+        app:layout_constraintStart_toEndOf="@id/item_image_shop_fragment"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.17" />
+
+    <TextView
+        android:id="@+id/sellerName_shop_fragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/item_title_shop_fragment"
+        app:layout_constraintStart_toStartOf="@id/item_title_shop_fragment"
+        android:textColor="@color/accent_MC_6"
+        android:fontFamily="@font/opensans_regular"
+        android:text="Eric"/>
+
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:divider="@drawable/empty_tall_dividerstar"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/item_image_shop_fragment"
+        app:layout_constraintTop_toBottomOf="@id/item_image_shop_fragment">
+
+        <ImageView
+            android:id="@+id/star1_review_shop_fragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_emptystar_review" />
+
+        <ImageView
+            android:id="@+id/star2_review_shop_fragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_emptystar_review" />
+
+        <ImageView
+            android:id="@+id/star3_review_shop_fragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_emptystar_review" />
+
+        <ImageView
+            android:id="@+id/star4_review_shop_fragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_emptystar_review" />
+
+        <ImageView
+            android:id="@+id/star5_review_shop_fragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_emptystar_review" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/numberOfPeopleRated_shop_fragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/linear"
+        app:layout_constraintBottom_toBottomOf="@id/linear"
+        android:fontFamily="@font/opensans_regular"
+        android:textColor="@color/accent_MC_6"
+        android:text="(6,3k)"
+        android:textSize="12sp"
+        android:layout_marginStart="5dp"/>
+
+    <ImageView
+        android:id="@+id/soldLogo_shop_fragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_sold"
+        app:layout_constraintBottom_toBottomOf="@id/numberOfPeopleRated_shop_fragment"
+        app:layout_constraintStart_toStartOf="@id/item_title_shop_fragment"/>
+
+    <TextView
+        android:id="@+id/numberOfPeopleBuy_shop_fragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBaseline_toBaselineOf="@id/numberOfPeopleRated_shop_fragment"
+        app:layout_constraintStart_toEndOf="@id/soldLogo_shop_fragment"
+        android:layout_marginStart="5dp"
+        android:textSize="12sp"
+        android:fontFamily="@font/opensans_regular"
+        android:textColor="@color/accent_MC_6"
+        android:text="(5,0k)"/>
+
+    <TextView
+        android:id="@+id/item_price_shop_fragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBaseline_toBaselineOf="@id/numberOfPeopleRated_shop_fragment"
+        android:layout_marginEnd="17dp"
+        android:textSize="24sp"
+        android:textColor="@color/accent_MC_1"
+        android:fontFamily="@font/opensans_light"
+        android:text="$20"/>
+
+    <androidx.cardview.widget.CardView
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/transparent"
+        app:layout_constraintBottom_toTopOf="@id/item_price_shop_fragment"
+        app:layout_constraintEnd_toEndOf="@id/item_price_shop_fragment">
+
+        <TextView
+            android:visibility="invisible"
+            android:id="@+id/best_seller_tag_shop_fragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/tag_box_item_row"
+            android:fontFamily="@font/opensans_regular"
+            android:text="Best Seller"
+            android:textColor="@color/accent_MC_1"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:paddingEnd="5dp"
+            android:paddingStart="5dp"/>
+    </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/underline_item_row"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/numberOfPeopleRated_shop_fragment"
+        app:layout_constraintVertical_bias="1"
+        android:layout_marginTop="5dp"/>
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

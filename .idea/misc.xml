@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/MellowCourse/MellowCourse-v2-master/app/src/main/res/drawable/buynow_homescreen.xml" value="0.243" />
+        <entry key="..\:/MellowCourse/MellowCourse-v2-master/app/src/main/res/drawable/empty_tall_divider.xml" value="0.13" />
+        <entry key="..\:/MellowCourse/MellowCourse-v2-master/app/src/main/res/drawable/empty_tall_dividerstar.xml" value="0.2595" />
+        <entry key="..\:/MellowCourse/MellowCourse-v2-master/app/src/main/res/drawable/outline_google_logo_login.xml" value="0.1" />
+        <entry key="..\:/MellowCourse/MellowCourse-v2-master/app/src/main/res/drawable/pop_up_box.xml" value="0.2205" />
+        <entry key="..\:/MellowCourse/MellowCourse-v2-master/app/src/main/res/drawable/pop_up_box_are_you_sure.xml" value="0.2205" />
+        <entry key="..\:/MellowCourse/MellowCourse-v2-master/app/src/main/res/drawable/popup_menu.xml" value="0.2205" />
+        <entry key="..\:/MellowCourse/MellowCourse-v2-master/app/src/main/res/drawable/profile_box_option_setting.xml" value="0.1" />
+        <entry key="..\:/MellowCourse/MellowCourse-v2-master/app/src/main/res/layout/activity_add_new_item.xml" value="0.24547101449275363" />
+        <entry key="..\:/MellowCourse/MellowCourse-v2-master/app/src/main/res/layout/activity_create_account.xml" value="0.21403508771929824" />
+        <entry key="..\:/MellowCourse/MellowCourse-v2-master/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/MellowCourse/MellowCourse-v2-master/app/src/main/res/layout/activity_main_screen.xml" value="0.10454155955441302" />
+        <entry key="..\:/MellowCourse/MellowCourse-v2-master/app/src/main/res/layout/fragment_profile.xml" value="0.176" />
+        <entry key="..\:/MellowCourse/MellowCourse-v2-master/app/src/main/res/layout/fragment_shop.xml" value="0.1" />
+        <entry key="..\:/MellowCourse/MellowCourse-v2-master/app/src/main/res/layout/fragment_wishlist.xml" value="0.21403508771929824" />
+        <entry key="..\:/MellowCourse/MellowCourse-v2-master/app/src/main/res/layout/item_row_shop_fragment.xml" value="0.264" />
+        <entry key="..\:/MellowCourse/MellowCourse-v2-master/app/src/main/res/layout/popup_are_you_sure_option.xml" value="0.2" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/MellowCourse/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/MellowCourse/app/src/main/res/drawable/buynow_homescreen.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/MellowCourse/app/src/main/res/drawable/ic_akar_icons_eye_slashed.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/MellowCourse/app/src/main/res/drawable/ic_google_logo.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/MellowCourse/app/src/main/res/drawable/ic_group_13.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/MellowCourse/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/MellowCourse/app/src/main/res/drawable/ic_shop.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/MellowCourse/app/src/main/res/drawable/input_outline.xml" value="0.1525" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/MellowCourse/app/src/main/res/drawable/learnmore_homescreen.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/MellowCourse/app/src/main/res/drawable/outline_google_logo_login.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/MellowCourse/app/src/main/res/drawable/tag_box_item_row.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/MellowCourse/app/src/main/res/drawable/white_description_box_add_item.xml" value="0.1795" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/MellowCourse/app/src/main/res/drawable/yellow_outline.xml" value="0.1" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/MellowCourse/app/src/main/res/font/nunito_light.xml" value="0.18333333333333332" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/MellowCourse/app/src/main/res/layout-v28/activity_create_account.xml" value="0.17223910840932116" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/MellowCourse/app/src/main/res/layout/activity_add_new_item.xml" value="0.25" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/MellowCourse/app/src/main/res/layout/activity_create_account.xml" value="0.33" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/MellowCourse/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/MellowCourse/app/src/main/res/layout/activity_main_screen.xml" value="0.2794871794871795" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/MellowCourse/app/src/main/res/layout/fragment_blank.xml" value="0.29102564102564105" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/MellowCourse/app/src/main/res/layout/fragment_home.xml" value="0.33" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/MellowCourse/app/src/main/res/layout/fragment_profile.xml" value="0.29102564102564105" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/MellowCourse/app/src/main/res/layout/fragment_shop.xml" value="0.29102564102564105" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/MellowCourse/app/src/main/res/layout/fragment_wishlist.xml" value="0.29102564102564105" />
+        <entry key="..\:/Users/Admin/AndroidStudioProjects/MellowCourse/app/src/main/res/layout/item_row_shop_fragment.xml" value="0.33" />
+        <entry key="..\:/download/MellowCourse-master/app/src/main/res/drawable/buynow_homescreen.xml" value="0.1315" />
+        <entry key="..\:/download/MellowCourse-master/app/src/main/res/drawable/pop_up_box.xml" value="0.1315" />
+        <entry key="..\:/download/MellowCourse-master/app/src/main/res/drawable/pop_up_box_are_you_sure.xml" value="0.1315" />
+        <entry key="..\:/download/MellowCourse-master/app/src/main/res/drawable/profile_box_option_setting.xml" value="0.1315" />
+        <entry key="..\:/download/MellowCourse-master/app/src/main/res/layout/activity_main.xml" value="0.17604166666666668" />
+        <entry key="..\:/download/MellowCourse-master/app/src/main/res/layout/fragment_home.xml" value="0.22" />
+        <entry key="..\:/download/MellowCourse-master/app/src/main/res/layout/fragment_profile.xml" value="0.22" />
+        <entry key="..\:/download/MellowCourse-master/app/src/main/res/layout/popup_are_you_sure_option.xml" value="0.25" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
