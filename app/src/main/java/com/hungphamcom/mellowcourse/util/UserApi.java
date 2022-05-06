@@ -47,7 +47,6 @@ public class UserApi extends Application {
         return status;
     }
 
-
     public void setStatus(String status) {
         this.status = status;
     }

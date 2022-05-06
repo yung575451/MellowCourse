@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -19,6 +18,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,6 +29,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.hungphamcom.mellowcourse.model.U_Status;
 import com.hungphamcom.mellowcourse.util.UserApi;
 import com.squareup.picasso.Picasso;
 
@@ -51,7 +52,8 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseUser currentUser;
 
     private FirebaseFirestore db=FirebaseFirestore.getInstance();
-    private CollectionReference collectionReference=db.collection("Users");
+    private CollectionReference userCollectionReference =db.collection("Users");
+    private CollectionReference statusCollectionReference =db.collection("U_status");
 
 
 
@@ -103,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
                             assert user!=null;
                             String currentUserId=user.getUid();
 
-                            collectionReference
+                            userCollectionReference
                                     .whereEqualTo("userId",currentUserId)
                                     .addSnapshotListener(new EventListener<QuerySnapshot>() {
                                         @Override
@@ -118,7 +120,18 @@ public class MainActivity extends AppCompatActivity {
                                                     UserApi userApi=UserApi.getInstance();
                                                     userApi.setUsername(snapshot.getString("username"));
                                                     userApi.setUserId(currentUserId);
-
+                                                    statusCollectionReference.whereEqualTo("userId",UserApi.getInstance().getUserId()).get()
+                                                            .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                                                @Override
+                                                                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                                                    if(!queryDocumentSnapshots.isEmpty()){
+                                                                        for(QueryDocumentSnapshot user: queryDocumentSnapshots){
+                                                                            U_Status u_status=user.toObject(U_Status.class);
+                                                                            userApi.setStatus(u_status.getStatus());
+                                                                        }
+                                                                    }
+                                                                }
+                                                            });
                                                     startActivity(new Intent(MainActivity.this,MainScreen.class));
                                                 }
                                             }

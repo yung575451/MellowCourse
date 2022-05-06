@@ -44,7 +44,8 @@ public class CreateAccountActivity extends AppCompatActivity {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    private CollectionReference collectionReference= db.collection("Users");
+    private CollectionReference collectionReferenceUser = db.collection("Users");
+    private CollectionReference collectionReferenceStatus =db.collection("U_status");
 
     private Button createAccountButton;
     private TextView haveAnAccountButton;
@@ -144,10 +145,9 @@ public class CreateAccountActivity extends AppCompatActivity {
                                 Map<String, String> userObj = new HashMap<>();
                                 userObj.put("userId", currentUserId);
                                 userObj.put("username", username);
-                                userObj.put("status", Util.KEY_USER);
 
                                 //save to our firestore database
-                                collectionReference.add(userObj)
+                                collectionReferenceUser.add(userObj)
                                         .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                             @Override
                                             public void onSuccess(DocumentReference documentReference) {
@@ -155,6 +155,11 @@ public class CreateAccountActivity extends AppCompatActivity {
                                                         .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                                             @Override
                                                             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                                Map<String , String > userStatus=new HashMap<>();
+                                                                userStatus.put("userId",currentUserId);
+                                                                userStatus.put("status", Util.KEY_USER);
+
+                                                                collectionReferenceStatus.add(userStatus);
                                                                 if (Objects.requireNonNull(task.getResult()).exists()) {
                                                                     progressBar.setVisibility(View.INVISIBLE);
                                                                     String name = task.getResult()
@@ -163,7 +168,7 @@ public class CreateAccountActivity extends AppCompatActivity {
                                                                     UserApi userApi = UserApi.getInstance(); //Global API
                                                                     userApi.setUserId(currentUserId);
                                                                     userApi.setUsername(name);
-                                                                    userApi.setUserId(Util.KEY_USER);
+                                                                    userApi.setStatus(Util.KEY_USER);
 
                                                                     Intent intent = new Intent(CreateAccountActivity.this,
                                                                             MainScreen.class);

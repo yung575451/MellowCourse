@@ -19,6 +19,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.hungphamcom.mellowcourse.adapter.viewPagerAdapter;
 import com.hungphamcom.mellowcourse.fragment.HomeFragment;
+import com.hungphamcom.mellowcourse.util.UserApi;
 
 public class MainScreen extends AppCompatActivity implements View.OnClickListener  {
     public static ViewPager2 mViewPager;
@@ -44,6 +45,10 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
 
         tabLayoutValueSetter();
         addItem.setOnClickListener(this);
+
+//        if(UserApi.getInstance().getStatus().equals("user")){
+//            addItem.setVisibility(View.INVISIBLE);
+//        }
 
     }
     private void tabLayoutValueSetter() {

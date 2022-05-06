@@ -15,9 +15,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager2.widget.ViewPager2;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -26,11 +27,15 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.storage.StorageReference;
 import com.hungphamcom.mellowcourse.MainActivity;
 import com.hungphamcom.mellowcourse.R;
 import com.hungphamcom.mellowcourse.util.UserApi;
 import com.hungphamcom.mellowcourse.util.Util;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ProfileFragment extends Fragment implements View.OnClickListener {
     private FirebaseAuth firebaseAuth;
@@ -41,12 +46,11 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     private FirebaseFirestore db= FirebaseFirestore.getInstance();
     private FirebaseAuth.AuthStateListener authStateListener;
     private StorageReference storageReference;
-    private CollectionReference collectionReference=db.collection("Users");
+    private CollectionReference usersCollectionReference=db.collection("Users");
+    private CollectionReference statusCollectionReference= db.collection("U_status");
     private DatabaseReference mDatabase;
 
     public static final String KEY_STATUS ="status";
-
-    private String id;
 
     private TextView signOutBtn;
     private TextView becomeSeller;
@@ -72,13 +76,15 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         signOutBtn=view.findViewById(R.id.sign_out_profile);
         becomeSeller=view.findViewById(R.id.become_seller_profile);
 
-        id=UserApi.getInstance().getUserId().toString().trim();
-
         signOutBtn.setOnClickListener(this);
         becomeSeller.setOnClickListener(this);
 
         mDatabase= FirebaseDatabase.getInstance().getReference();
-        Toast.makeText(getActivity(),UserApi.getInstance().getUserId(),Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(),UserApi.getInstance().getStatus(),Toast.LENGTH_SHORT).show();
+
+        if(UserApi.getInstance().getStatus()==Util.KEY_SELLER){
+            becomeSeller.setVisibility(View.INVISIBLE);
+        }
 
 
     }
@@ -129,25 +135,23 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     }
 
     private void becomeASeller() {
-        collectionReference.whereEqualTo("userId",id)
-                    .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                @Override
-                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                    Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
-                    if(!queryDocumentSnapshots.isEmpty()){
-                        for(QueryDocumentSnapshot users : queryDocumentSnapshots){
-                            UserApi userApi= users.toObject(UserApi.class);
-                            userApi.setStatus(Util.KEY_SELLER);
-                       }
-                  }
-
+        String update=Util.KEY_SELLER;
+        statusCollectionReference.whereEqualTo("userId",UserApi.getInstance().getUserId())
+                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful()){
+                    for(QueryDocumentSnapshot user: task.getResult()){
+                        Map<String, String> updateStatus=new HashMap<>();
+                        updateStatus.put(Util.KEY_STATUS,update);
+                        statusCollectionReference.document(user.getId()).set(updateStatus, SetOptions.merge());
+                        UserApi.getInstance().setStatus(Util.KEY_SELLER);
+                        ViewPager2 vp=getActivity().findViewById(R.id.viewpager);
+                        vp.setCurrentItem(1);
+                    }
                 }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-
-                }
-            });
+            }
+        });
 
 
 

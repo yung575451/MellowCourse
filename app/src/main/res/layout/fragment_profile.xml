@@ -23,6 +23,13 @@
             android:background="@drawable/user_avatar_profile" />
 
         <TextView
+            android:id="@+id/username_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_below="@id/avatar"/>
+
+        <TextView
             android:id="@+id/become_seller_profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
