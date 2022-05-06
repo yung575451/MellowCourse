@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -130,6 +131,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onClick(View view) {
                 becomeASeller();
+                reloadFragment();
                 popupWindow.dismiss();
             }
         });
@@ -141,6 +143,10 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
             }
         });
 
+    }
+
+    private void reloadFragment() {
+        get
     }
 
     private void becomeASeller() {
@@ -157,11 +163,14 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                         UserApi.getInstance().setStatus(Util.KEY_SELLER);
                         ViewPager2 vp=getActivity().findViewById(R.id.viewpager);
                         Toast.makeText(getActivity(),"You have become a seller",Toast.LENGTH_LONG).show();
+
                         vp.setCurrentItem(0);
                     }
                 }
             }
         });
     }
+
+
 
 }
