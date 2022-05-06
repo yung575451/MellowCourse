@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -27,6 +28,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
     private ImageView mLogo_MainScreen;
     private TextView buyNowBtn;
     private ImageView addItem;
+    private UserApi userApi;
     private com.hungphamcom.mellowcourse.adapter.viewPagerAdapter viewPagerAdapter;
 
     @Override
@@ -46,9 +48,13 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         tabLayoutValueSetter();
         addItem.setOnClickListener(this);
 
-//        if(UserApi.getInstance().getStatus().equals("user")){
-//            addItem.setVisibility(View.INVISIBLE);
-//        }
+        if(UserApi.getInstance().getStatus().equals("user")){
+            addItem.setVisibility(View.INVISIBLE);
+        }
+
+        Log.d("mainScreen", "Username: "+UserApi.getInstance().getUsername()
+              +  "UserId: "+UserApi.getInstance().getUserId()
+        +"UserStatus: "+UserApi.getInstance().getStatus());
 
     }
     private void tabLayoutValueSetter() {
@@ -84,4 +90,5 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
                 break;
         }
     }
+
 }

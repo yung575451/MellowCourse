@@ -2,11 +2,13 @@ package com.hungphamcom.mellowcourse.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -30,6 +33,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.storage.StorageReference;
 import com.hungphamcom.mellowcourse.MainActivity;
+import com.hungphamcom.mellowcourse.MainScreen;
 import com.hungphamcom.mellowcourse.R;
 import com.hungphamcom.mellowcourse.util.UserApi;
 import com.hungphamcom.mellowcourse.util.Util;
@@ -50,7 +54,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     private CollectionReference statusCollectionReference= db.collection("U_status");
     private DatabaseReference mDatabase;
 
-    public static final String KEY_STATUS ="status";
+    private TextView username;
+    private ImageView becomeSellerIcon;
 
     private TextView signOutBtn;
     private TextView becomeSeller;
@@ -75,15 +80,19 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
         signOutBtn=view.findViewById(R.id.sign_out_profile);
         becomeSeller=view.findViewById(R.id.become_seller_profile);
+        username=view.findViewById(R.id.username_profile);
+        becomeSellerIcon=view.findViewById(R.id.become_seller_icon);
 
         signOutBtn.setOnClickListener(this);
         becomeSeller.setOnClickListener(this);
 
         mDatabase= FirebaseDatabase.getInstance().getReference();
+        username.setText(UserApi.getInstance().getUsername());
         Toast.makeText(getActivity(),UserApi.getInstance().getStatus(),Toast.LENGTH_SHORT).show();
 
-        if(UserApi.getInstance().getStatus()==Util.KEY_SELLER){
+        if(UserApi.getInstance().getStatus().equals("seller")){
             becomeSeller.setVisibility(View.INVISIBLE);
+            becomeSellerIcon.setVisibility(View.INVISIBLE);
         }
 
 
@@ -147,13 +156,12 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                         statusCollectionReference.document(user.getId()).set(updateStatus, SetOptions.merge());
                         UserApi.getInstance().setStatus(Util.KEY_SELLER);
                         ViewPager2 vp=getActivity().findViewById(R.id.viewpager);
-                        vp.setCurrentItem(1);
+                        Toast.makeText(getActivity(),"You have become a seller",Toast.LENGTH_LONG).show();
+                        vp.setCurrentItem(0);
                     }
                 }
             }
         });
-
-
-
     }
+
 }

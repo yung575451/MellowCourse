@@ -104,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
                             FirebaseUser user=firebaseAuth.getCurrentUser();
                             assert user!=null;
                             String currentUserId=user.getUid();
+                            String tempUserStatus=null;
 
                             userCollectionReference
                                     .whereEqualTo("userId",currentUserId)
@@ -127,12 +128,20 @@ public class MainActivity extends AppCompatActivity {
                                                                     if(!queryDocumentSnapshots.isEmpty()){
                                                                         for(QueryDocumentSnapshot user: queryDocumentSnapshots){
                                                                             U_Status u_status=user.toObject(U_Status.class);
+                                                                            Log.d("login", "status: "+u_status.getStatus());
                                                                             userApi.setStatus(u_status.getStatus());
+                                                                            Log.d("login", "userStatus: "+userApi.getStatus());
                                                                         }
                                                                     }
                                                                 }
-                                                            });
-                                                    startActivity(new Intent(MainActivity.this,MainScreen.class));
+                                                            }).addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                            Log.d("login", "userStatus: "+userApi.getStatus());
+                                                            startActivity(new Intent(MainActivity.this,MainScreen.class));
+                                                        }
+                                                    });
+
                                                 }
                                             }
                                         }
