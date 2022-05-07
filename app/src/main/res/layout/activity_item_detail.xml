@@ -4,6 +4,326 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.item_detail">
+    tools:context=".ui.item_detail"
+    android:background="@color/primary_MC_1">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#0F0F0D"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/logo_mainScreen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|start"
+            android:paddingStart="21dp"
+            android:paddingTop="14dp"
+            android:paddingEnd="21dp"
+            android:paddingBottom="14dp"
+            app:srcCompat="@drawable/ic_back_to_previous_logo" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|end"
+            android:layout_marginEnd="20dp"
+            android:divider="@drawable/empty_tall_divider"
+            android:orientation="horizontal"
+            android:showDividers="middle">
+
+            <ImageView
+                android:id="@+id/addItem_mainScreen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                app:srcCompat="@drawable/ic_plus_sign_mainscreen" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                app:srcCompat="@drawable/ic_search_normal" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                app:srcCompat="@drawable/ic_frame_48" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                app:srcCompat="@drawable/ic_clarity_notification_line" />
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="13dp"
+        app:layout_constraintBottom_toTopOf="@+id/buyNow_card"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView2"
+        app:layout_constraintVertical_bias="1.0">
+
+        <ImageView
+            android:id="@+id/item_image_item_detail"
+            android:layout_width="match_parent"
+            android:layout_height="175dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="27dp"
+            android:background="@drawable/blackt_transparent_item_image_itemdetail"
+            app:layout_constraintBottom_toBottomOf="@id/item_image_item_detail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/item_name_item_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/nunito_regular"
+            android:text="Figma UI UX Essentails"
+            android:textColor="@color/secondary_MC_1"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_image_item_detail" />
+
+        <TextView
+            android:id="@+id/create_by_item_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/opensans_regular"
+            android:text="Created by"
+            android:textColor="@color/accent_MC_6"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_name_item_detail" />
+
+        <TextView
+            android:id="@+id/seller_name_item_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="Stan"
+            android:textColor="@color/accent_MC_1"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@id/create_by_item_detail"
+            app:layout_constraintTop_toBottomOf="@id/item_name_item_detail" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:paddingStart="5dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="5dp"
+            android:paddingBottom="5dp"
+            android:src="@drawable/ic_wish_star_item_detail_empty"
+            app:layout_constraintBottom_toBottomOf="@id/create_by_item_detail"
+            app:layout_constraintBottom_toTopOf="@id/create_by_item_detail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/item_name_item_detail"
+            app:layout_constraintVertical_bias="0" />
+
+        <TextView
+            android:id="@+id/item_description_item_detail"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/opensans_regular"
+            android:text="How to improve your grades, advance in your job and expand your mind -- by learning how to think yourself"
+            android:textColor="@color/accent_MC_6"
+            android:textSize="16sp"
+            app:layout_constraintTop_toBottomOf="@id/create_by_item_detail" />
+
+        <LinearLayout
+            android:id="@+id/review"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:divider="@drawable/empty_tall_dividerstar"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_description_item_detail">
+
+            <ImageView
+                android:id="@+id/star1_review_item_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_fullstar_review_item_detail" />
+
+            <ImageView
+                android:id="@+id/star2_review_item_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_fullstar_review_item_detail" />
+
+            <ImageView
+                android:id="@+id/star3_review_item_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_fullstar_review_item_detail" />
+
+            <ImageView
+                android:id="@+id/star4_review_item_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_fullstar_review_item_detail" />
+
+            <ImageView
+                android:id="@+id/star5_review_item_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_emptystar_review_item_detail" />
+
+            <TextView
+                android:id="@+id/numberOfPeopleRated_shop_fragment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:fontFamily="@font/opensans_regular"
+                android:text="(6,3k)"
+                android:textColor="@color/accent_MC_6"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/purchase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/review">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/user_icon_item_detail" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:fontFamily="@font/opensans_regular"
+                android:text="56,264 Purchase"
+                android:textColor="@color/accent_MC_6"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/item_price_item_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="@font/opensans_light"
+            android:text="$599"
+            android:textColor="@color/accent_MC_1"
+            android:textSize="40sp"
+            app:layout_constraintBottom_toBottomOf="@id/purchase"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/buyNow_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:backgroundTint="@color/primary_MC_2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/buy_now_Btn_item_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_regular"
+                android:textColor="@color/primary_MC_3"
+                android:textSize="24sp"
+                android:text="Buy Now"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:gravity="center"
+                android:background="@drawable/buy_now_box"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/add_to_wishList_Btn_item_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Add to Wishlist"
+                    android:background="@drawable/sub_box_item_detail"
+                    android:gravity="center"
+                    android:fontFamily="@font/nunito_regular"
+                    android:textSize="16sp"
+                    android:layout_weight="1"
+                    android:textColor="@color/primary_MC_3"
+                    android:paddingTop="7dp"
+                    android:paddingBottom="7dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="6dp"/>
+                <TextView
+                    android:id="@+id/add_to_cart_Btn_item_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Add to Cart"
+                    android:background="@drawable/sub_box_item_detail"
+                    android:gravity="center"
+                    android:fontFamily="@font/nunito_regular"
+                    android:textSize="16sp"
+                    android:layout_weight="1"
+                    android:textColor="@color/primary_MC_3"
+                    android:paddingTop="7dp"
+                    android:paddingBottom="7dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginStart="6dp" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+
+
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

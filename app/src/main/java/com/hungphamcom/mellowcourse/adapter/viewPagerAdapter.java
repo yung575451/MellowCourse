@@ -31,6 +31,8 @@ public class viewPagerAdapter extends FragmentStateAdapter {
         return new HomeFragment();
     }
 
+
+
     @Override
     public int getItemCount() {
         return 4;

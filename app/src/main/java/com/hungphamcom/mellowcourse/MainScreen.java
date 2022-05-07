@@ -40,11 +40,10 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
 
         mViewPager=findViewById(R.id.viewpager);
         mTabLayout=findViewById(R.id.tabLayout);
-        viewPagerAdapter=new viewPagerAdapter(this);
-        mViewPager.setAdapter(viewPagerAdapter);
+
         mLogo_MainScreen=findViewById(R.id.logo_mainScreen);
         mLogo_MainScreen.setOnClickListener(this);
-
+        initPagerAdapter();
         tabLayoutValueSetter();
         addItem.setOnClickListener(this);
 
@@ -89,6 +88,16 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
                 startActivity(new Intent(MainScreen.this,add_new_item.class));
                 break;
         }
+    }
+
+    public void initPagerAdapter(){
+        viewPagerAdapter=new viewPagerAdapter(MainScreen.this);
+        mViewPager.setAdapter(viewPagerAdapter);
+    }
+
+    public void showAddItem(){
+        addItem.setVisibility(View.VISIBLE);
+        Toast.makeText(MainScreen.this,"You have become a seller",Toast.LENGTH_LONG).show();
     }
 
 }

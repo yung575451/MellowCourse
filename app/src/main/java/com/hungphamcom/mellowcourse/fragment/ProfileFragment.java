@@ -58,6 +58,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     private TextView username;
     private ImageView becomeSellerIcon;
 
+    private TextView myList;
+    private ImageView myListIcon;
+
     private TextView signOutBtn;
     private TextView becomeSeller;
     private TextView yesBtn;
@@ -87,17 +90,22 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         signOutBtn.setOnClickListener(this);
         becomeSeller.setOnClickListener(this);
 
+        myList=view.findViewById(R.id.my_list_profile);
+        myListIcon=view.findViewById(R.id.my_list_icon);
+
         mDatabase= FirebaseDatabase.getInstance().getReference();
         username.setText(UserApi.getInstance().getUsername());
-        Toast.makeText(getActivity(),UserApi.getInstance().getStatus(),Toast.LENGTH_SHORT).show();
 
         if(UserApi.getInstance().getStatus().equals("seller")){
             becomeSeller.setVisibility(View.INVISIBLE);
             becomeSellerIcon.setVisibility(View.INVISIBLE);
+            myList.setVisibility(View.VISIBLE);
+            myListIcon.setVisibility(View.VISIBLE);
         }
 
 
     }
+
 
     @Override
     public void onClick(View view) {
@@ -131,8 +139,10 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onClick(View view) {
                 becomeASeller();
-                reloadFragment();
                 popupWindow.dismiss();
+                MainScreen activity=(MainScreen) getContext();
+                activity.initPagerAdapter();
+                activity.showAddItem();
             }
         });
 
@@ -143,10 +153,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
             }
         });
 
-    }
-
-    private void reloadFragment() {
-        get
     }
 
     private void becomeASeller() {
@@ -161,10 +167,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                         updateStatus.put(Util.KEY_STATUS,update);
                         statusCollectionReference.document(user.getId()).set(updateStatus, SetOptions.merge());
                         UserApi.getInstance().setStatus(Util.KEY_SELLER);
-                        ViewPager2 vp=getActivity().findViewById(R.id.viewpager);
-                        Toast.makeText(getActivity(),"You have become a seller",Toast.LENGTH_LONG).show();
-
-                        vp.setCurrentItem(0);
                     }
                 }
             }
