@@ -113,6 +113,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/opensans_regular"
+            android:layout_marginTop="5dp"
             android:text="Created by"
             android:textColor="@color/accent_MC_6"
             android:textSize="16sp"
@@ -124,6 +125,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
+            android:layout_marginTop="5dp"
             android:text="Stan"
             android:textColor="@color/accent_MC_1"
             android:textSize="16sp"
@@ -131,6 +133,7 @@
             app:layout_constraintTop_toBottomOf="@id/item_name_item_detail" />
 
         <ImageView
+            android:id="@+id/"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -164,6 +167,7 @@
             android:layout_marginTop="5dp"
             android:divider="@drawable/empty_tall_dividerstar"
             android:orientation="horizontal"
+            app:layout_constraintVertical_bias=".3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/item_description_item_detail">
 
@@ -245,6 +249,109 @@
             app:layout_constraintBottom_toBottomOf="@id/purchase"
             app:layout_constraintEnd_toEndOf="parent" />
 
+        <TextView
+            android:id="@+id/seller_name_tag_item_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/opensans_regular"
+            android:text="Stan"
+            android:textColor="@color/accent_MC_1"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="@id/seller_avatar_item_detail"
+            app:layout_constraintStart_toStartOf="@id/seller_avatar_item_detail"
+            app:layout_constraintTop_toBottomOf="@+id/purchase" />
+
+        <ImageView
+            android:id="@+id/seller_avatar_item_detail"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/user_ava_item_detail"
+            app:layout_constraintHorizontal_bias=".03"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/seller_name_tag_item_profile" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="@id/seller_avatar_item_detail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/seller_avatar_item_detail"
+            app:layout_constraintTop_toTopOf="@id/seller_avatar_item_detail">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4,7 Seller rating"
+                    android:textColor="@color/accent_MC_6"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="188,440 Buyer"
+                    android:textColor="@color/accent_MC_6"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/seller_straight_line_item_detail" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|right"
+                android:layout_marginStart="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="56,878 Reviews"
+                    android:textColor="@color/accent_MC_6"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="7 Item"
+                    android:textColor="@color/accent_MC_6"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/view_profile_item_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/check_profile_box"
+            android:gravity="center"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text="View Profile"
+            android:textColor="@color/accent_MC_1"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+            app:layout_constraintVertical_bias="0"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -252,7 +359,7 @@
         android:id="@+id/buyNow_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="5dp"
+        android:paddingTop="10dp"
         android:backgroundTint="@color/primary_MC_2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -261,7 +368,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:layout_marginBottom="10dp"
             android:orientation="vertical">
             <TextView
@@ -274,8 +381,8 @@
                 android:text="Buy Now"
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="12dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
                 android:gravity="center"
                 android:background="@drawable/buy_now_box"/>
 
@@ -283,7 +390,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp">
                 <TextView
                     android:id="@+id/add_to_wishList_Btn_item_detail"
                     android:layout_width="match_parent"
@@ -295,8 +403,8 @@
                     android:textSize="16sp"
                     android:layout_weight="1"
                     android:textColor="@color/primary_MC_3"
-                    android:paddingTop="7dp"
-                    android:paddingBottom="7dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     android:layout_marginStart="12dp"
                     android:layout_marginEnd="6dp"/>
                 <TextView
@@ -310,8 +418,8 @@
                     android:textSize="16sp"
                     android:layout_weight="1"
                     android:textColor="@color/primary_MC_3"
-                    android:paddingTop="7dp"
-                    android:paddingBottom="7dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     android:layout_marginEnd="12dp"
                     android:layout_marginStart="6dp" />
 
