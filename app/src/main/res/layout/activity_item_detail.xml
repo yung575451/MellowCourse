@@ -133,15 +133,16 @@
             app:layout_constraintTop_toBottomOf="@id/item_name_item_detail" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/wishlist_star_indicator_item_detail"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:paddingStart="5dp"
             android:paddingTop="5dp"
             android:paddingEnd="5dp"
             android:paddingBottom="5dp"
-            android:src="@drawable/ic_wish_star_item_detail_empty"
+            android:background="@drawable/ic_wish_star_item_detail_empty"
             app:layout_constraintBottom_toBottomOf="@id/create_by_item_detail"
             app:layout_constraintBottom_toTopOf="@id/create_by_item_detail"
             app:layout_constraintEnd_toEndOf="parent"
@@ -408,6 +409,7 @@
                     android:paddingBottom="10dp"
                     android:layout_marginStart="12dp"
                     android:layout_marginEnd="6dp"/>
+
                 <TextView
                     android:id="@+id/add_to_cart_Btn_item_detail"
                     android:layout_width="match_parent"

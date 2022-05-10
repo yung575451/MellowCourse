@@ -70,30 +70,29 @@ public class add_new_item extends AppCompatActivity implements View.OnClickListe
     private CollectionReference collectionReference = db.collection("Item");
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_item);
 
-        storageReference= FirebaseStorage.getInstance().getReference();
-        firebaseAuth= FirebaseAuth.getInstance();
+        storageReference = FirebaseStorage.getInstance().getReference();
+        firebaseAuth = FirebaseAuth.getInstance();
 
-        homeLogo_add_item=findViewById(R.id.logo_mainScreen);
-        addSign_add_item=findViewById(R.id.addItemTaskBar_addItemScreen);
+        homeLogo_add_item = findViewById(R.id.logo_mainScreen);
+        addSign_add_item = findViewById(R.id.addItemTaskBar_addItemScreen);
 
-        addPhotoButton_add_item=findViewById(R.id.cameraButton_add_item_screen);
-        imageView=findViewById(R.id.add_imageView_add_item_screen);
+        addPhotoButton_add_item = findViewById(R.id.cameraButton_add_item_screen);
+        imageView = findViewById(R.id.add_imageView_add_item_screen);
 
-        progressBar=findViewById(R.id.progressBar_add_item);
-        itemName_add_item=findViewById(R.id.item_name_add_item_screen);
-        itemPrice_add_item=findViewById(R.id.item_price_add_item_screen);
-        itemDescription_add_item=findViewById(R.id.item_description_add_item_screen);
+        progressBar = findViewById(R.id.progressBar_add_item);
+        itemName_add_item = findViewById(R.id.item_name_add_item_screen);
+        itemPrice_add_item = findViewById(R.id.item_price_add_item_screen);
+        itemDescription_add_item = findViewById(R.id.item_description_add_item_screen);
 
-        sellerName_add_item=findViewById(R.id.seller_name_add_item_screen);
+        sellerName_add_item = findViewById(R.id.seller_name_add_item_screen);
 
-        addItemBtn_add_item=findViewById(R.id.addItem_addItemScreen);
-        backToMainScreen=findViewById(R.id.back_to_main_screen_addItemScreen);
+        addItemBtn_add_item = findViewById(R.id.addItem_addItemScreen);
+        backToMainScreen = findViewById(R.id.back_to_main_screen_addItemScreen);
 
         addPhotoButton_add_item.setOnClickListener(this);
         backToMainScreen.setOnClickListener(this);
@@ -145,7 +144,7 @@ public class add_new_item extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.addItem_addItemScreen:
                 addItem();
                 break;
@@ -161,27 +160,27 @@ public class add_new_item extends AppCompatActivity implements View.OnClickListe
     }
 
     private void addItem() {
-        String name= itemName_add_item.getText().toString().trim();
+        String name = itemName_add_item.getText().toString().trim();
         int price = Integer.parseInt(itemPrice_add_item.getText().toString().trim());
-        String description=itemDescription_add_item.getText().toString().trim();
+        String description = itemDescription_add_item.getText().toString().trim();
 
         progressBar.setVisibility(View.VISIBLE);
-        final StorageReference filepath=storageReference
-                .child("item_images").child("my_image_"+ Timestamp.now().getSeconds());
+        final StorageReference filepath = storageReference
+                .child("item_images").child("my_image_" + Timestamp.now().getSeconds());
 
-        if(!TextUtils.isEmpty(name)
-        && !TextUtils.isEmpty(name)
-        && !TextUtils.isEmpty(name)
-        && imageURI!=null){
+        if (!TextUtils.isEmpty(name)
+                && !TextUtils.isEmpty(name)
+                && !TextUtils.isEmpty(name)
+                && imageURI != null) {
             filepath.putFile(imageURI).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     filepath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
-                            String imageUrl=uri.toString();
+                            String imageUrl = uri.toString();
 
-                            Item item=new Item();
+                            Item item = new Item();
                             item.setName(name);
                             item.setPrice(price);
                             item.setDescription(description);
@@ -199,13 +198,13 @@ public class add_new_item extends AppCompatActivity implements View.OnClickListe
                                 public void onSuccess(DocumentReference documentReference) {
                                     progressBar.setVisibility(View.INVISIBLE);
                                     startActivity(new Intent(add_new_item.this
-                                            ,MainScreen.class));
+                                            , MainScreen.class));
                                     finish();
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    Log.d("addNewItem", "onFailure: "+e.getMessage());
+                                    Log.d("addNewItem", "onFailure: " + e.getMessage());
                                 }
                             });
 
@@ -216,12 +215,12 @@ public class add_new_item extends AppCompatActivity implements View.OnClickListe
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     progressBar.setVisibility(View.INVISIBLE);
-                    Log.d("addNewItem", "onFailure: "+e.getMessage());
+                    Log.d("addNewItem", "onFailure: " + e.getMessage());
                 }
             });
-        }else {
+        } else {
             progressBar.setVisibility(View.INVISIBLE);
-            Log.d("addNewItem", "addItem: "+"can't add");
+            Log.d("addNewItem", "addItem: " + "can't add");
         }
     }
 }
