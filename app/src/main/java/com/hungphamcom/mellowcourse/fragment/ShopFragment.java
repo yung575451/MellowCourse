@@ -1,6 +1,7 @@
 package com.hungphamcom.mellowcourse.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -28,8 +29,10 @@ import com.hungphamcom.mellowcourse.MainScreen;
 import com.hungphamcom.mellowcourse.R;
 import com.hungphamcom.mellowcourse.adapter.shopItemRecyclerAdapter;
 import com.hungphamcom.mellowcourse.model.Item;
+import com.hungphamcom.mellowcourse.ui.item_detail;
 import com.hungphamcom.mellowcourse.util.UserApi;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +45,7 @@ public class ShopFragment extends Fragment {
     private List<Item> itemList;
     private RecyclerView recyclerView;
     private shopItemRecyclerAdapter shopItemRecyclerAdapter;
+    private shopItemRecyclerAdapter.RecyclerViewClickListener listener;
 
     private CollectionReference collectionReference=db.collection("Item");
     private TextView noItemInShop;
@@ -77,9 +81,9 @@ public class ShopFragment extends Fragment {
                                 Item item = items.toObject(Item.class);
                                 itemList.add(item);
                             }
-
+                            setOnClickListener();
                             shopItemRecyclerAdapter = new shopItemRecyclerAdapter(getActivity(),
-                                    itemList);
+                                    itemList,listener);
                             recyclerView.setAdapter(shopItemRecyclerAdapter);
                             shopItemRecyclerAdapter.notifyDataSetChanged();
 
@@ -96,6 +100,26 @@ public class ShopFragment extends Fragment {
             }
         });
         return rootView;
+    }
+
+    private void setOnClickListener() {
+        listener=new shopItemRecyclerAdapter.RecyclerViewClickListener() {
+            @Override
+            public void onClick(View v, int position) {
+                Intent intent=new Intent(getActivity(), item_detail.class);
+                intent.putExtra("itemName", itemList.get(position).getName());
+                intent.putExtra("itemPrice", itemList.get(position).getPrice());
+                intent.putExtra("itemDescription", itemList.get(position).getDescription());
+                intent.putExtra("imageUrl", itemList.get(position).getImageUrl());
+                intent.putExtra("pplPurchase", itemList.get(position).getPurchase());
+                intent.putExtra("review", itemList.get(position).getReview());
+                intent.putExtra("pplReview", itemList.get(position).getPplReview());
+                intent.putExtra("userId", itemList.get(position).getUserId());
+                intent.putExtra("userName", itemList.get(position).getUsername());
+                intent.putExtra("itemId", itemList.get(position).getItemId());
+                startActivity(intent);
+            }
+        };
     }
 
     @Override

@@ -192,6 +192,7 @@ public class add_new_item extends AppCompatActivity implements View.OnClickListe
                             item.setReview(0);
                             item.setUsername(currentUserName);
                             item.setUserId(currentUserId);
+                            item.setPplReview(0);
 
                             collectionReference.add(item).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                 @Override

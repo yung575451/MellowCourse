@@ -2,25 +2,27 @@ package com.hungphamcom.mellowcourse.model;
 
 import com.google.firebase.Timestamp;
 
-public class Item {
+public class Item  {
     private String name;
     private int price;
     private String description;
     private String imageUrl;
     private int purchase;
     private int review;
+    private int pplReview;
     private String UserId;
     private Timestamp timeAdded;
     private String username;
     private String itemId;
 
-    public Item(String name, int price, String description, String imageUrl, int purchase, int review, String userId, Timestamp timeAdded, String username, String itemId) {
+    public Item(String name, int price, String description, String imageUrl, int purchase, int review, int pplReview, String userId, Timestamp timeAdded, String username, String itemId) {
         this.name = name;
         this.price = price;
         this.description = description;
         this.imageUrl = imageUrl;
         this.purchase = purchase;
         this.review = review;
+        this.pplReview = pplReview;
         UserId = userId;
         this.timeAdded = timeAdded;
         this.username = username;
@@ -107,5 +109,13 @@ public class Item {
 
     public void setItemId(String itemId) {
         this.itemId = itemId;
+    }
+
+    public int getPplReview() {
+        return pplReview;
+    }
+
+    public void setPplReview(int pplReview) {
+        this.pplReview = pplReview;
     }
 }

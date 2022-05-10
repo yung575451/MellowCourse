@@ -2,6 +2,8 @@ package com.hungphamcom.mellowcourse.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,9 +12,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.Timestamp;
+import com.hungphamcom.mellowcourse.MainScreen;
 import com.hungphamcom.mellowcourse.R;
+import com.hungphamcom.mellowcourse.add_new_item;
 import com.hungphamcom.mellowcourse.model.Item;
 import com.squareup.picasso.Picasso;
 
@@ -21,10 +28,20 @@ import java.util.List;
 public class shopItemRecyclerAdapter  extends RecyclerView.Adapter<shopItemRecyclerAdapter.ViewHolder> {
     private Context context;
     private List<Item> itemList;
+    private RecyclerViewClickListener listener;
+    private AlertDialog.Builder builder;
+    private AlertDialog dialog;
+    private LayoutInflater inflater;
 
-    public shopItemRecyclerAdapter(Context context,List<Item> itemList){
+    public shopItemRecyclerAdapter(Context context,List<Item> itemList,RecyclerViewClickListener listener){
         this.context=context;
         this.itemList =  itemList;
+        this.listener=listener;
+    }
+
+    public shopItemRecyclerAdapter(List<Item> itemList,RecyclerViewClickListener listener){
+        this.itemList=itemList;
+        this.listener=listener;
     }
 
 
@@ -113,9 +130,10 @@ public class shopItemRecyclerAdapter  extends RecyclerView.Adapter<shopItemRecyc
         return itemList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements  View.OnClickListener{
         public TextView title,seller_name,price,pplReview,pplBuy;
         public ImageView image,star1,star2,star3,star4,star5;
+        ConstraintLayout item;
         String userId;
         String username;
         public ViewHolder(@NonNull View itemView, Context ctx) {
@@ -132,10 +150,18 @@ public class shopItemRecyclerAdapter  extends RecyclerView.Adapter<shopItemRecyc
             star3=itemView.findViewById(R.id.star3_review_shop_fragment);
             star4=itemView.findViewById(R.id.star4_review_shop_fragment);
             star5=itemView.findViewById(R.id.star5_review_shop_fragment);
+            item=itemView.findViewById(R.id.item_item_detail);
+            item.setOnClickListener(this);
+        }
 
 
+        @Override
+        public void onClick(View view) {
+            listener.onClick(view,getAdapterPosition());
         }
     }
 
-
+    public interface RecyclerViewClickListener{
+        void onClick(View v,int position);
+    }
 }

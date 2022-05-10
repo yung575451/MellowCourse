@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/logo_mainScreen"
+            android:id="@+id/back_to_mainScreen_itemDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|start"
@@ -37,7 +37,7 @@
             android:showDividers="middle">
 
             <ImageView
-                android:id="@+id/addItem_mainScreen"
+                android:id="@+id/addItem_item_detail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
@@ -104,7 +104,7 @@
             android:fontFamily="@font/nunito_regular"
             android:text="Figma UI UX Essentails"
             android:textColor="@color/secondary_MC_1"
-            android:textSize="24sp"
+            android:textSize="32sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/item_image_item_detail" />
 
@@ -133,7 +133,6 @@
             app:layout_constraintTop_toBottomOf="@id/item_name_item_detail" />
 
         <ImageView
-            android:id="@+id/"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -152,10 +151,11 @@
         <TextView
             android:id="@+id/item_description_item_detail"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/opensans_regular"
-            android:text="How to improve your grades, advance in your job and expand your mind -- by learning how to think yourself"
+            android:maxHeight="80dp"
+            android:text="How to improve y our grades, advance in your job and expand your mind -- by learning how to think yourself"
             android:textColor="@color/accent_MC_6"
             android:textSize="16sp"
             app:layout_constraintTop_toBottomOf="@id/create_by_item_detail" />
@@ -164,7 +164,7 @@
             android:id="@+id/review"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="15dp"
             android:divider="@drawable/empty_tall_dividerstar"
             android:orientation="horizontal"
             app:layout_constraintVertical_bias=".3"
@@ -173,43 +173,43 @@
 
             <ImageView
                 android:id="@+id/star1_review_item_detail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:background="@drawable/ic_fullstar_review_item_detail" />
 
             <ImageView
                 android:id="@+id/star2_review_item_detail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:background="@drawable/ic_fullstar_review_item_detail" />
 
             <ImageView
                 android:id="@+id/star3_review_item_detail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:background="@drawable/ic_fullstar_review_item_detail" />
 
             <ImageView
                 android:id="@+id/star4_review_item_detail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:background="@drawable/ic_fullstar_review_item_detail" />
 
             <ImageView
                 android:id="@+id/star5_review_item_detail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:background="@drawable/ic_emptystar_review_item_detail" />
 
             <TextView
-                android:id="@+id/numberOfPeopleRated_shop_fragment"
+                android:id="@+id/numberOfPeopleRated_item_detail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:fontFamily="@font/opensans_regular"
                 android:text="(6,3k)"
                 android:textColor="@color/accent_MC_6"
-                android:textSize="14sp" />
+                android:textSize="16sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -227,6 +227,7 @@
                 android:src="@drawable/user_icon_item_detail" />
 
             <TextView
+                android:id="@+id/numberOfPeopleBuy_item_detail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -266,7 +267,7 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_marginTop="5dp"
-            android:src="@drawable/user_ava_item_detail"
+            android:background="@drawable/user_avatar_profile"
             app:layout_constraintHorizontal_bias=".03"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
