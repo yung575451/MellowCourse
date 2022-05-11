@@ -165,6 +165,7 @@ public class item_detail extends AppCompatActivity implements View.OnClickListen
         backToMainBtn.setOnClickListener(this);
         addItem.setOnClickListener(this);
         addToWishList.setOnClickListener(this);
+        wishListIndicator.setOnClickListener(this);
     }
 
     private void checkItemInWishList() {
@@ -205,6 +206,21 @@ public class item_detail extends AppCompatActivity implements View.OnClickListen
 
                 }
                 if (check.equals("Remove from WishList")){
+                    removeItemWishList();
+                    addToWishList.setText("Add to Wishlist");
+                    wishListIndicator.setBackgroundResource(R.drawable.ic_wish_star_item_detail_empty);
+                }
+                break;
+            case R.id.wishlist_star_indicator_item_detail:
+                String checkIndicator;
+                checkIndicator=addToWishList.getText().toString().trim();
+                if (checkIndicator.equals("Add to Wishlist")){
+                    addToWishList();
+                    addToWishList.setText("Remove from WishList");
+                    wishListIndicator.setBackgroundResource(R.drawable.ic_wish_star_item_detail_full);
+
+                }
+                if (checkIndicator.equals("Remove from WishList")){
                     removeItemWishList();
                     addToWishList.setText("Add to Wishlist");
                     wishListIndicator.setBackgroundResource(R.drawable.ic_wish_star_item_detail_empty);
