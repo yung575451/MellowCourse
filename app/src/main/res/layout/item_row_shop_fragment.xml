@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/item_item_detail"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -127,29 +128,21 @@
         android:fontFamily="@font/opensans_light"
         android:text="$20"/>
 
-    <androidx.cardview.widget.CardView
-        android:visibility="invisible"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@android:color/transparent"
-        app:layout_constraintBottom_toTopOf="@id/item_price_shop_fragment"
-        app:layout_constraintEnd_toEndOf="@id/item_price_shop_fragment">
-
         <TextView
-            android:visibility="invisible"
-            android:id="@+id/best_seller_tag_shop_fragment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/tag_box_item_row"
+            android:id="@+id/delete_item_shop_fragment"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/ic_akar_icons_circle_x"
             android:fontFamily="@font/opensans_regular"
-            android:text="Best Seller"
-            android:textColor="@color/accent_MC_1"
+            android:paddingStart="5dp"
             android:paddingTop="3dp"
-            android:paddingBottom="3dp"
             android:paddingEnd="5dp"
-            android:paddingStart="5dp"/>
-    </androidx.cardview.widget.CardView>
-
+            android:paddingBottom="3dp"
+            android:textColor="@color/accent_MC_1"
+            android:visibility="invisible"
+            android:layout_marginTop="15dp"
+            app:layout_constraintEnd_toEndOf="@id/item_price_shop_fragment"
+            app:layout_constraintTop_toTopOf="parent"/>
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

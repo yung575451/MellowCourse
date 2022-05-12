@@ -11,9 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,10 +19,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -34,11 +29,8 @@ import com.google.firebase.storage.StorageReference;
 import com.hungphamcom.mellowcourse.MainScreen;
 import com.hungphamcom.mellowcourse.R;
 import com.hungphamcom.mellowcourse.add_new_item;
-import com.hungphamcom.mellowcourse.model.Item;
-import com.hungphamcom.mellowcourse.model.Wishlist;
 import com.squareup.picasso.Picasso;
 
-import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -74,6 +66,7 @@ public class item_detail extends AppCompatActivity implements View.OnClickListen
 
     private CollectionReference itemDB=db.collection("Item");
     private CollectionReference userWishList = db.collection("WishList");
+    private CollectionReference userCart=db.collection("Cart");
 
     private Context context;
     private AlertDialog.Builder builder;
@@ -182,6 +175,7 @@ public class item_detail extends AppCompatActivity implements View.OnClickListen
         addToWishList.setOnClickListener(this);
         wishListIndicator.setOnClickListener(this);
         buyNowBtn.setOnClickListener(this);
+        addToCart.setOnClickListener(this);
     }
 
     private void checkItemInWishList() {
@@ -247,6 +241,9 @@ public class item_detail extends AppCompatActivity implements View.OnClickListen
                 break;
             case R.id.buy_now_Btn_item_detail:
                 buyItemCheck();
+                break;
+            case R.id.add_to_cart_Btn_item_detail:
+                addToCart();
                 break;
         }
     }
@@ -395,6 +392,28 @@ public class item_detail extends AppCompatActivity implements View.OnClickListen
 
                             }
                         });
+            }
+        });
+    }
+
+    private void addToCart() {
+        userCart.document(userId).update("itemId",FieldValue.arrayUnion(itemId)).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    Toast.makeText(item_detail.this, "Add to Cart success", Toast.LENGTH_SHORT).show();
+                }else {
+                    Map<String, String> updateScore=new HashMap<>();
+                    updateScore.put("itemId",itemId);
+                    userCart.document(userId).set(updateScore);
+                    Toast.makeText(item_detail.this, "Add to Cart success", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
             }
         });
     }

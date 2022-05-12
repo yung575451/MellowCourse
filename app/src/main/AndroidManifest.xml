@@ -13,6 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MellowCourse">
         <activity
+            android:name=".ui.UserCart"
+            android:exported="false" />
+        <activity
+            android:name=".ui.UserList"
+            android:exported="false" />
+        <activity
             android:name=".ui.item_detail"
             android:exported="false" />
         <activity

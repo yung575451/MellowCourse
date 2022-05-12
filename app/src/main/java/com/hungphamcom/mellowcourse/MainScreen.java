@@ -20,6 +20,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.hungphamcom.mellowcourse.adapter.viewPagerAdapter;
 import com.hungphamcom.mellowcourse.fragment.HomeFragment;
+import com.hungphamcom.mellowcourse.ui.UserCart;
 import com.hungphamcom.mellowcourse.util.UserApi;
 
 public class MainScreen extends AppCompatActivity implements View.OnClickListener  {
@@ -27,7 +28,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
     private TabLayout mTabLayout;
     private ImageView mLogo_MainScreen;
     private TextView buyNowBtn;
-    private ImageView addItem;
+    private ImageView addItem,cartItem;
     private UserApi userApi;
     private com.hungphamcom.mellowcourse.adapter.viewPagerAdapter viewPagerAdapter;
 
@@ -37,6 +38,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         setContentView(R.layout.activity_main_screen);
 
         addItem=findViewById(R.id.addItem_mainScreen);
+        cartItem=findViewById(R.id.itemCart_mainScreen);
 
         mViewPager=findViewById(R.id.viewpager);
         mTabLayout=findViewById(R.id.tabLayout);
@@ -46,6 +48,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         initPagerAdapter();
         tabLayoutValueSetter();
         addItem.setOnClickListener(this);
+        cartItem.setOnClickListener(this);
 
         if(UserApi.getInstance().getStatus().equals("user")){
             addItem.setVisibility(View.INVISIBLE);
@@ -86,6 +89,9 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
             case R.id.addItem_mainScreen:
                 //Toast.makeText(this, "add Item has been pressed", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(MainScreen.this,add_new_item.class));
+                break;
+            case R.id.itemCart_mainScreen:
+                startActivity(new Intent(MainScreen.this, UserCart.class));
                 break;
         }
     }
