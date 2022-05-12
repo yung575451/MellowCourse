@@ -1,20 +1,24 @@
 package com.hungphamcom.mellowcourse.model;
 
-public class Wishlist {
-    private String itemId;
 
-    public Wishlist( String itemId) {
-        this.itemId = itemId;
+import java.util.List;
+
+public class Wishlist {
+
+    private List<String> WishItem;
+
+    public Wishlist(List<String> wishItem) {
+        WishItem = wishItem;
     }
 
     public Wishlist() {
     }
 
-    public String getItemId() {
-        return itemId;
+    public List<String> getWishItem() {
+        return WishItem;
     }
 
-    public void setItemId(String itemId) {
-        this.itemId = itemId;
+    public void setWishItem(List<String> wishItem) {
+        WishItem = wishItem;
     }
 }

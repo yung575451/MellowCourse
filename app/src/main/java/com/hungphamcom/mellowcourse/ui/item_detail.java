@@ -1,6 +1,7 @@
 package com.hungphamcom.mellowcourse.ui;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -8,8 +9,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,7 +27,9 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.storage.StorageReference;
 import com.hungphamcom.mellowcourse.MainScreen;
 import com.hungphamcom.mellowcourse.R;
@@ -34,6 +40,7 @@ import com.squareup.picasso.Picasso;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Map;
 
 public class item_detail extends AppCompatActivity implements View.OnClickListener {
     private ImageView backToMainBtn;
@@ -57,15 +64,21 @@ public class item_detail extends AppCompatActivity implements View.OnClickListen
     private ImageView star1, star2, star3, star4, star5,wishListIndicator;
     private String itemId = null;
 
-    private FirebaseAuth firebaseAuth;
-    private FirebaseAuth.AuthStateListener authStateListener;
-    private FirebaseUser user;
+    private int reviewScore=0;
+    private int numberPplReview=0;
+    private int numberPplPurchase=0;
 
     //connect to fire store;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private StorageReference storageReference;
 
+    private CollectionReference itemDB=db.collection("Item");
     private CollectionReference userWishList = db.collection("WishList");
+
+    private Context context;
+    private AlertDialog.Builder builder;
+    private AlertDialog dialog;
+    private LayoutInflater inflater;
 
     @SuppressLint("ResourceType")
     @Override
@@ -105,6 +118,8 @@ public class item_detail extends AppCompatActivity implements View.OnClickListen
             review = extras.getInt("review");
             userId = extras.getString("userId");
             itemId = extras.getString("itemId");
+            numberPplReview=extras.getInt("pplReview");
+            numberPplPurchase=extras.getInt("pplPurchase");
 
         }
         switch (review) {
@@ -166,6 +181,7 @@ public class item_detail extends AppCompatActivity implements View.OnClickListen
         addItem.setOnClickListener(this);
         addToWishList.setOnClickListener(this);
         wishListIndicator.setOnClickListener(this);
+        buyNowBtn.setOnClickListener(this);
     }
 
     private void checkItemInWishList() {
@@ -188,8 +204,11 @@ public class item_detail extends AppCompatActivity implements View.OnClickListen
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back_to_mainScreen_itemDetail:
+                Intent intent=new Intent(item_detail.this
+                        , MainScreen.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
                 finish();
-                Log.d("itemDetail", "onClick: " + "MainScreen");
                 break;
             case R.id.addItem_item_detail:
                 finish();
@@ -226,7 +245,158 @@ public class item_detail extends AppCompatActivity implements View.OnClickListen
                     wishListIndicator.setBackgroundResource(R.drawable.ic_wish_star_item_detail_empty);
                 }
                 break;
+            case R.id.buy_now_Btn_item_detail:
+                buyItemCheck();
+                break;
         }
+    }
+
+    private void buyItemCheck() {
+        builder=new AlertDialog.Builder(item_detail.this);
+        inflater= LayoutInflater.from(item_detail.this);
+        View view=inflater.inflate(R.layout.popup_are_you_sure_option,null);
+
+        TextView title=view.findViewById(R.id.title_pop_up);
+        TextView no=view.findViewById(R.id.no_pop_up_option);
+        TextView yes=view.findViewById(R.id.yes_pop_up_option);
+
+        title.setText("Are you sure?");
+
+        builder.setView(view);
+        dialog=builder.create();
+        dialog.show();
+
+        yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+                reviewProduct();
+            }
+        });
+
+        no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+
+    }
+
+    private void reviewProduct() {
+        builder=new AlertDialog.Builder(item_detail.this);
+        inflater= LayoutInflater.from(item_detail.this);
+        View view=inflater.inflate(R.layout.popup_review_product,null);
+
+        ImageView star1=view.findViewById(R.id.star1_review_the_item);
+        ImageView star2=view.findViewById(R.id.star2_review_the_item);
+        ImageView star3=view.findViewById(R.id.star3_review_the_item);
+        ImageView star4=view.findViewById(R.id.star4_review_the_item);
+        ImageView star5=view.findViewById(R.id.star5_review_the_item);
+
+        TextView okayBtn=view.findViewById(R.id.okayBtn_rate_the_item);
+
+        builder.setView(view);
+        dialog=builder.create();
+        dialog.show();
+
+        star1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                star1.setBackgroundResource(R.drawable.ic_fullstar_review);
+                star2.setBackgroundResource(R.drawable.ic_emptystar_review);
+                star3.setBackgroundResource(R.drawable.ic_emptystar_review);
+                star4.setBackgroundResource(R.drawable.ic_emptystar_review);
+                star5.setBackgroundResource(R.drawable.ic_emptystar_review);
+                reviewScore=1;
+            }
+        });
+
+        star2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                star1.setBackgroundResource(R.drawable.ic_fullstar_review);
+                star2.setBackgroundResource(R.drawable.ic_fullstar_review);
+                star3.setBackgroundResource(R.drawable.ic_emptystar_review);
+                star4.setBackgroundResource(R.drawable.ic_emptystar_review);
+                star5.setBackgroundResource(R.drawable.ic_emptystar_review);
+                reviewScore=2;
+            }
+        });
+
+        star3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                star1.setBackgroundResource(R.drawable.ic_fullstar_review);
+                star2.setBackgroundResource(R.drawable.ic_fullstar_review);
+                star3.setBackgroundResource(R.drawable.ic_fullstar_review);
+                star4.setBackgroundResource(R.drawable.ic_emptystar_review);
+                star5.setBackgroundResource(R.drawable.ic_emptystar_review);
+                reviewScore=3;
+            }
+        });
+
+        star4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                star1.setBackgroundResource(R.drawable.ic_fullstar_review);
+                star2.setBackgroundResource(R.drawable.ic_fullstar_review);
+                star3.setBackgroundResource(R.drawable.ic_fullstar_review);
+                star4.setBackgroundResource(R.drawable.ic_fullstar_review);
+                star5.setBackgroundResource(R.drawable.ic_emptystar_review);
+                reviewScore=4;
+            }
+        });
+
+        star5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                star1.setBackgroundResource(R.drawable.ic_fullstar_review);
+                star2.setBackgroundResource(R.drawable.ic_fullstar_review);
+                star3.setBackgroundResource(R.drawable.ic_fullstar_review);
+                star4.setBackgroundResource(R.drawable.ic_fullstar_review);
+                star5.setBackgroundResource(R.drawable.ic_fullstar_review);
+                reviewScore=5;
+            }
+        });
+
+        okayBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int totalScore;
+                if(numberPplReview==0){
+                    totalScore=reviewScore;
+                }else {
+                    totalScore=(review+reviewScore)/2;
+                }
+
+                numberPplReview=numberPplReview+1;
+                numberPplPurchase=numberPplPurchase+1;
+                itemDB.whereEqualTo("itemId",itemId).get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if(task.isSuccessful()){
+                                    for(QueryDocumentSnapshot item:task.getResult()){
+                                        Map<String, Integer> updateScore=new HashMap<>();
+                                        updateScore.put("review",totalScore);
+                                        updateScore.put("pplReview",numberPplReview);
+                                        updateScore.put("purchase",numberPplPurchase);
+                                        itemDB.document(item.getId()).set(updateScore, SetOptions.merge());
+                                        Toast.makeText(item_detail.this,"You have purchase the item"
+                                        ,Toast.LENGTH_SHORT).show();
+                                        Intent intent=new Intent(item_detail.this
+                                                , MainScreen.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                }
+
+                            }
+                        });
+            }
+        });
     }
 
     private void removeItemWishList() {
@@ -234,8 +404,6 @@ public class item_detail extends AppCompatActivity implements View.OnClickListen
     }
 
     private void addToWishList() {
-        Wishlist wishlist = new Wishlist();
-        wishlist.setItemId(itemId);
         userWishList.document(userId).update("itemId", FieldValue.arrayUnion(itemId)).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {

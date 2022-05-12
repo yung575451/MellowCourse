@@ -63,7 +63,7 @@ public class shopItemRecyclerAdapter  extends RecyclerView.Adapter<shopItemRecyc
         holder.title.setText(item.getName());
         holder.seller_name.setText(item.getUsername());
         holder.price.setText("$"+item.getPrice());
-        holder.pplReview.setText(" ("+item.getReview()+") ");
+        holder.pplReview.setText(" ("+item.getPplReview()+") ");
         holder.pplBuy.setText(" ("+item.getPurchase()+") ");
         imageUrl=item.getImageUrl();
 
@@ -163,5 +163,8 @@ public class shopItemRecyclerAdapter  extends RecyclerView.Adapter<shopItemRecyc
 
     public interface RecyclerViewClickListener{
         void onClick(View v,int position);
+    }
+    public void refreshList(){
+        notifyDataSetChanged();
     }
 }

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="5dp"
+
+        android:layout_centerInParent="true"
+        android:background="@drawable/pop_up_box_are_you_sure">
+        <TextView
+            android:id="@+id/title_pop_up"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Rate the item"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:textColor="@color/primary_MC_1"
+            android:fontFamily="@font/nunito_regular"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="8dp">
+            <ImageView
+                android:id="@+id/star1_review_the_item"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="2dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/ic_emptystar_review"/>
+            <ImageView
+                android:id="@+id/star2_review_the_item"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="2dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/ic_emptystar_review"/>
+            <ImageView
+                android:id="@+id/star3_review_the_item"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="2dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/ic_emptystar_review"/>
+            <ImageView
+                android:id="@+id/star4_review_the_item"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="2dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/ic_emptystar_review"/>
+            <ImageView
+                android:id="@+id/star5_review_the_item"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="2dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/ic_emptystar_review"/>
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/okayBtn_rate_the_item"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Okay"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:textColor="@color/grey_MC_100"
+            android:background="@drawable/black_box"/>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>
