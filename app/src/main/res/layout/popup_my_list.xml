@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/primary_MC_2"
+    android:padding="10dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="What do you need ?"
+        android:textSize="20sp"
+        android:textColor="@color/grey_MC_100" />
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/delete_pop_up_option_user_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete"
+            android:backgroundTint="#F25041"
+            android:textColor="@color/primary_MC_1"
+            android:layout_marginHorizontal="2dp"/>
+
+        <Button
+            android:id="@+id/edit_pop_up_option_user_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit"
+            android:backgroundTint="#F2E85C"
+            android:textColor="@color/primary_MC_1"
+            android:layout_marginHorizontal="2dp"/>
+
+        <Button
+            android:id="@+id/check_pop_up_option_user_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Check"
+            android:backgroundTint="#2CBF89"
+            android:textColor="@color/primary_MC_1"
+            android:layout_marginHorizontal="2dp"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>

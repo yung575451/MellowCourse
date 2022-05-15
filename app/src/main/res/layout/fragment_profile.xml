@@ -60,7 +60,6 @@
             android:background="@drawable/ic_iconoir_nav_arrow_right" />
 
         <TextView
-            android:visibility="invisible"
             android:id="@+id/my_list_profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -73,7 +72,8 @@
             android:paddingBottom="6dp"
             android:text="My List"
             android:textColor="@color/grey_MC_100"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:visibility="invisible" />
 
 
         <ImageView

@@ -36,6 +36,7 @@ import com.google.firebase.storage.StorageReference;
 import com.hungphamcom.mellowcourse.MainActivity;
 import com.hungphamcom.mellowcourse.MainScreen;
 import com.hungphamcom.mellowcourse.R;
+import com.hungphamcom.mellowcourse.ui.UserList;
 import com.hungphamcom.mellowcourse.util.UserApi;
 import com.hungphamcom.mellowcourse.util.Util;
 
@@ -101,6 +102,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
             becomeSellerIcon.setVisibility(View.INVISIBLE);
             myList.setVisibility(View.VISIBLE);
             myListIcon.setVisibility(View.VISIBLE);
+            myList.setOnClickListener(this);
         }
 
 
@@ -119,6 +121,10 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.become_seller_profile:
                 popupcheck();
+                break;
+            case R.id.my_list_profile:
+                Intent intent=new Intent(getActivity(), UserList.class);
+                startActivity(intent);
                 break;
         }
     }
@@ -148,9 +154,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
         no.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                popupWindow.dismiss();
-            }
+                public void onClick(View view) {
+                    popupWindow.dismiss();
+                }
         });
 
     }
