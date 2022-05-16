@@ -153,9 +153,4 @@
         app:layout_constraintTop_toBottomOf="@id/numberOfPeopleRated_shop_fragment"
         app:layout_constraintVertical_bias="1"
         android:layout_marginTop="5dp"/>
-
-
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

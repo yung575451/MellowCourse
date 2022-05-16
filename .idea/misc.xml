@@ -64,6 +64,7 @@
         <entry key="..\:/download/MellowCourse-master/app/src/main/res/drawable/pop_up_box.xml" value="0.1315" />
         <entry key="..\:/download/MellowCourse-master/app/src/main/res/drawable/pop_up_box_are_you_sure.xml" value="0.1315" />
         <entry key="..\:/download/MellowCourse-master/app/src/main/res/drawable/profile_box_option_setting.xml" value="0.1315" />
+        <entry key="..\:/download/MellowCourse-master/app/src/main/res/drawable/search_box.xml" value="0.1" />
         <entry key="..\:/download/MellowCourse-master/app/src/main/res/drawable/seller_straight_line.xml" value="0.1" />
         <entry key="..\:/download/MellowCourse-master/app/src/main/res/drawable/seller_straight_line_item_detail.xml" value="0.1" />
         <entry key="..\:/download/MellowCourse-master/app/src/main/res/drawable/sub_box_item_detail.xml" value="0.1" />
@@ -74,17 +75,18 @@
         <entry key="..\:/download/MellowCourse-master/app/src/main/res/layout/activity_item_detail.xml" value="0.18" />
         <entry key="..\:/download/MellowCourse-master/app/src/main/res/layout/activity_main.xml" value="0.17604166666666668" />
         <entry key="..\:/download/MellowCourse-master/app/src/main/res/layout/activity_main_screen.xml" value="0.22" />
+        <entry key="..\:/download/MellowCourse-master/app/src/main/res/layout/activity_search_item.xml" value="0.22" />
         <entry key="..\:/download/MellowCourse-master/app/src/main/res/layout/activity_user_cart.xml" value="0.2" />
         <entry key="..\:/download/MellowCourse-master/app/src/main/res/layout/activity_user_list.xml" value="0.25" />
         <entry key="..\:/download/MellowCourse-master/app/src/main/res/layout/cart_menu_selected.xml" value="0.14055973266499583" />
-        <entry key="..\:/download/MellowCourse-master/app/src/main/res/layout/fragment_home.xml" value="0.22" />
+        <entry key="..\:/download/MellowCourse-master/app/src/main/res/layout/fragment_home.xml" value="0.1686746987951807" />
         <entry key="..\:/download/MellowCourse-master/app/src/main/res/layout/fragment_profile.xml" value="0.22" />
         <entry key="..\:/download/MellowCourse-master/app/src/main/res/layout/fragment_shop.xml" value="0.2246376811594203" />
         <entry key="..\:/download/MellowCourse-master/app/src/main/res/layout/fragment_wishlist.xml" value="0.2246376811594203" />
         <entry key="..\:/download/MellowCourse-master/app/src/main/res/layout/item_row_shop_fragment.xml" value="0.33" />
-        <entry key="..\:/download/MellowCourse-master/app/src/main/res/layout/popup_are_you_sure_option.xml" value="0.25" />
-        <entry key="..\:/download/MellowCourse-master/app/src/main/res/layout/popup_my_list.xml" value="0.25" />
-        <entry key="..\:/download/MellowCourse-master/app/src/main/res/layout/popup_review_product.xml" value="0.25" />
+        <entry key="..\:/download/MellowCourse-master/app/src/main/res/layout/popup_are_you_sure_option.xml" value="0.11290322580645161" />
+        <entry key="..\:/download/MellowCourse-master/app/src/main/res/layout/popup_my_list.xml" value="0.14583333333333334" />
+        <entry key="..\:/download/MellowCourse-master/app/src/main/res/layout/popup_review_product.xml" value="0.11290322580645161" />
       </map>
     </option>
   </component>

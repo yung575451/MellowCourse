@@ -35,6 +35,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.hungphamcom.mellowcourse.model.Item;
+import com.hungphamcom.mellowcourse.ui.UserList;
+import com.hungphamcom.mellowcourse.ui.item_detail;
 import com.hungphamcom.mellowcourse.util.UserApi;
 import com.squareup.picasso.Picasso;
 
@@ -64,6 +66,8 @@ public class add_new_item extends AppCompatActivity implements View.OnClickListe
 
     private String timeAdd;
 
+    private int checkImg;
+
     private String currentUserId;
     private String currentUserName;
     private ActivityResultLauncher<String> mTakePhoto;
@@ -85,6 +89,8 @@ public class add_new_item extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_item);
+
+        checkImg=0;
 
         storageReference = FirebaseStorage.getInstance().getReference();
         firebaseAuth = FirebaseAuth.getInstance();
@@ -116,6 +122,7 @@ public class add_new_item extends AppCompatActivity implements View.OnClickListe
                     public void onActivityResult(Uri result) {
                         imageView.setImageURI(result);
                         imageURI = result;
+                        checkImg=1;
                     }
                 });
         if (UserApi.getInstance() != null) {
@@ -129,7 +136,7 @@ public class add_new_item extends AppCompatActivity implements View.OnClickListe
         if (extras != null) {
             itemName_add_item.setText(extras.getString("itemName"));
             itemDescription_add_item.setText(extras.getString("itemDescription"));
-            itemPrice_add_item.setText("$" + String.valueOf(extras.getInt("itemPrice")));
+            itemPrice_add_item.setText(String.valueOf(extras.getInt("itemPrice")));
             image=extras.getString("image");
             timeAdd=extras.getString("timeAdd");
             itemId=extras.getString("itemId");
@@ -202,47 +209,94 @@ public class add_new_item extends AppCompatActivity implements View.OnClickListe
         String name = itemName_add_item.getText().toString().trim();
         int price = Integer.parseInt(itemPrice_add_item.getText().toString().trim());
         String description = itemDescription_add_item.getText().toString().trim();
-
         progressBar.setVisibility(View.VISIBLE);
         final StorageReference filepath = storageReference
                 .child("item_images").child("my_image_" + timeAdd);
 
-        filepath.delete();
+        final StorageReference imagesPath = storageReference
+                .child("item_images").child("my_image_" + Timestamp.now().getSeconds());
+        if(checkImg==0){
+            HashMap<String,String> map=new HashMap<>();
+            map.put("name",name);
+            map.put("description",description);
 
-        if (!TextUtils.isEmpty(name)
-                && !TextUtils.isEmpty((CharSequence) itemPrice_add_item)
-                && !TextUtils.isEmpty(description)
-                && imageURI != null) {
-            filepath.putFile(imageURI).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            HashMap<String,Integer> map1=new HashMap<>();
+            map1.put("price",price);
+
+            collectionReference.whereEqualTo("itemId",itemId)
+                    .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    filepath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        @Override
-                        public void onSuccess(Uri uri) {
-                            HashMap<String,String> map=new HashMap<>();
-                            map.put("name",name);
-                            map.put("description",description);
-
-                            HashMap<String,Integer> map1=new HashMap<>();
-                            map1.put("price",price);
-
-                            collectionReference.whereEqualTo("itemId",itemId)
-                                    .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                @Override
-                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                    if(task.isSuccessful()){
-                                        for(QueryDocumentSnapshot items: task.getResult()){
-                                            collectionReference.document(items.getId()).set(map, SetOptions.merge());
-                                            collectionReference.document(items.getId()).set(map1, SetOptions.merge());
-                                        }
-                                    }
-                                }
-                            });
-
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if(task.isSuccessful()){
+                        for(QueryDocumentSnapshot items: task.getResult()){
+                            collectionReference.document(items.getId()).set(map, SetOptions.merge());
+                            collectionReference.document(items.getId()).set(map1, SetOptions.merge());
                         }
-                    });
+                    }
+                }
+                    }).addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    progressBar.setVisibility(View.INVISIBLE);
+                    finish();
+                    Intent intent=new Intent(add_new_item.this
+                            , UserList.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+
                 }
             });
+        }else {
+
+            filepath.delete();
+
+            if (!TextUtils.isEmpty(name)
+                    && !TextUtils.isEmpty(name)
+                    && !TextUtils.isEmpty(description)
+                    && imageURI != null) {
+                imagesPath.putFile(imageURI).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        imagesPath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                String imageUrl=uri.toString();
+
+                                HashMap<String,String> map=new HashMap<>();
+                                map.put("name",name);
+                                map.put("description",description);
+                                map.put("imageUrl",imageUrl);
+
+                                HashMap<String,Integer> map1=new HashMap<>();
+                                map1.put("price",price);
+
+                                collectionReference.whereEqualTo("itemId",itemId)
+                                        .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                        if(task.isSuccessful()){
+                                            for(QueryDocumentSnapshot items: task.getResult()){
+                                                collectionReference.document(items.getId()).set(map, SetOptions.merge());
+                                                collectionReference.document(items.getId()).set(map1, SetOptions.merge());
+                                            }
+                                        }
+                                    }
+                                }).addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                        progressBar.setVisibility(View.INVISIBLE);
+                                        finish();
+                                        Intent intent=new Intent(add_new_item.this
+                                                , UserList.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                        startActivity(intent);
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
+            }
         }
     }
 

@@ -95,12 +95,5 @@
                 android:background="@drawable/buynow_homescreen"
                 android:gravity="center"/>
         </LinearLayout>
-
-
-
-
-
     </LinearLayout>
-
-
 </FrameLayout>

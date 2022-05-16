@@ -175,7 +175,5 @@ public class UserList extends AppCompatActivity {
             }
         };
 
-
-
     }
 }

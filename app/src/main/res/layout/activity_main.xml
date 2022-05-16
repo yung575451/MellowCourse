@@ -224,14 +224,6 @@
                 android:text="Register Now"
                 android:textColor="@color/accent_MC_1"
                 android:textSize="16sp" />
-
-
         </LinearLayout>
-
-
     </LinearLayout>
-
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

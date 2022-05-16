@@ -48,7 +48,5 @@
             android:textColor="@color/primary_MC_1"
             android:layout_marginHorizontal="2dp"/>
 
-
     </LinearLayout>
-
 </LinearLayout>

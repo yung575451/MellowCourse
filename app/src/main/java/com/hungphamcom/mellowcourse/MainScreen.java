@@ -105,5 +105,4 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
         addItem.setVisibility(View.VISIBLE);
         Toast.makeText(MainScreen.this,"You have become a seller",Toast.LENGTH_LONG).show();
     }
-
 }

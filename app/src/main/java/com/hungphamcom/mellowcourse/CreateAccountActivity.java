@@ -223,6 +223,4 @@ public class CreateAccountActivity extends AppCompatActivity {
         firebaseAuth.addAuthStateListener(authStateListener);
 
     }
-
-
 }

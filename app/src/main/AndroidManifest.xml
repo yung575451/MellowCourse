@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MellowCourse">
         <activity
+            android:name=".Search_Item"
+            android:exported="false" />
+        <activity
             android:name=".ui.UserCart"
             android:exported="false" />
         <activity
