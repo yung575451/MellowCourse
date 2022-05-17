@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/pop_up_box_are_you_sure">
+
+    <EditText
+        android:layout_marginTop="5dp"
+        android:id="@+id/search_input"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:hint="Search Here"
+        android:fontFamily="@font/opensans_regular"
+        android:textSize="20sp"
+        android:maxLines="1"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginBottom="5dp">
+
+        <Button
+            android:id="@+id/cancel_search_popUp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/accent_MC_1"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="5dp"
+            android:text="Cancel"
+            android:textColor="@color/primary_MC_1"/>
+
+        <Button
+            android:id="@+id/search_search_popUp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:backgroundTint="@color/secondary_MC_1"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="10dp"
+            android:text="Search"
+            android:textColor="@color/primary_MC_1"/>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

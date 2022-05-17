@@ -45,6 +45,7 @@
         <entry key="..\:/Users/Admin/AndroidStudioProjects/MellowCourse/app/src/main/res/layout/fragment_shop.xml" value="0.29102564102564105" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/MellowCourse/app/src/main/res/layout/fragment_wishlist.xml" value="0.29102564102564105" />
         <entry key="..\:/Users/Admin/AndroidStudioProjects/MellowCourse/app/src/main/res/layout/item_row_shop_fragment.xml" value="0.33" />
+        <entry key="..\:/download/MellowCourse-master/app/src/main/res/drawable-v24/ic_search_selected.xml" value="0.1" />
         <entry key="..\:/download/MellowCourse-master/app/src/main/res/drawable/add_sign_selected.xml" value="0.1105" />
         <entry key="..\:/download/MellowCourse-master/app/src/main/res/drawable/black_box.xml" value="0.1165" />
         <entry key="..\:/download/MellowCourse-master/app/src/main/res/drawable/blackt_transparent_item_image_itemdetail.xml" value="0.1" />
@@ -58,6 +59,7 @@
         <entry key="..\:/download/MellowCourse-master/app/src/main/res/drawable/ic_fullstar_review_item_detail.xml" value="0.1" />
         <entry key="..\:/download/MellowCourse-master/app/src/main/res/drawable/ic_home_2.xml" value="0.1" />
         <entry key="..\:/download/MellowCourse-master/app/src/main/res/drawable/ic_plus_sign_mainscreen.xml" value="0.1105" />
+        <entry key="..\:/download/MellowCourse-master/app/src/main/res/drawable/ic_search_normal.xml" value="0.1" />
         <entry key="..\:/download/MellowCourse-master/app/src/main/res/drawable/ic_wish_star_item_detail_empty.xml" value="0.1" />
         <entry key="..\:/download/MellowCourse-master/app/src/main/res/drawable/ic_wish_star_item_detail_full.xml" value="0.1" />
         <entry key="..\:/download/MellowCourse-master/app/src/main/res/drawable/outline_google_logo_login.xml" value="0.1" />
@@ -87,6 +89,7 @@
         <entry key="..\:/download/MellowCourse-master/app/src/main/res/layout/popup_are_you_sure_option.xml" value="0.11290322580645161" />
         <entry key="..\:/download/MellowCourse-master/app/src/main/res/layout/popup_my_list.xml" value="0.14583333333333334" />
         <entry key="..\:/download/MellowCourse-master/app/src/main/res/layout/popup_review_product.xml" value="0.11290322580645161" />
+        <entry key="..\:/download/MellowCourse-master/app/src/main/res/layout/search_pop_up_box.xml" value="0.25" />
       </map>
     </option>
   </component>
