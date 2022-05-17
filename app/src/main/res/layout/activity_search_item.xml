@@ -19,15 +19,15 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/logo_mainScreen"
+            android:id="@+id/back_to_mainScreen_searchItem"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="65dp"
             android:layout_gravity="center|start"
             android:paddingStart="21dp"
             android:paddingTop="14dp"
             android:paddingEnd="21dp"
             android:paddingBottom="14dp"
-            app:srcCompat="@drawable/ic_group_13" />
+            app:srcCompat="@drawable/ic_back_to_previous_logo" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -39,21 +39,21 @@
             android:showDividers="middle">
 
             <ImageView
-                android:id="@+id/addItem_mainScreen"
+                android:id="@+id/addItem_searchItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 app:srcCompat="@drawable/ic_plus_sign_mainscreen" />
 
             <ImageView
-                android:id="@+id/search_item_mainScreen"
+                android:id="@+id/search_item_searchItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 app:srcCompat="@drawable/ic_search_selected" />
 
             <ImageView
-                android:id="@+id/itemCart_mainScreen"
+                android:id="@+id/itemCart_searchItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dp"

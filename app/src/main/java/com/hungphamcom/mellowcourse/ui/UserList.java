@@ -13,7 +13,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -30,8 +33,10 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.hungphamcom.mellowcourse.MainScreen;
 import com.hungphamcom.mellowcourse.R;
+import com.hungphamcom.mellowcourse.Search_Item;
 import com.hungphamcom.mellowcourse.adapter.shopItemRecyclerAdapter;
 import com.hungphamcom.mellowcourse.add_new_item;
+import com.hungphamcom.mellowcourse.funtions.TM_funtion;
 import com.hungphamcom.mellowcourse.model.Item;
 import com.hungphamcom.mellowcourse.util.UserApi;
 
@@ -39,7 +44,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.Inflater;
 
-public class UserList extends AppCompatActivity {
+public class UserList extends AppCompatActivity implements View.OnClickListener {
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseUser user;
@@ -51,6 +56,10 @@ public class UserList extends AppCompatActivity {
     private shopItemRecyclerAdapter.RecyclerViewClickListener listener;
 
     private Uri imageURI;
+
+    private TM_funtion tm_funtion=new TM_funtion();
+
+    private ImageView backToMainBtn,addBtn,searchBtn,cartBtn;
 
     private CollectionReference collectionReference=db.collection("Item");
     private TextView noItemInShop;
@@ -67,6 +76,11 @@ public class UserList extends AppCompatActivity {
 
         storageReference = FirebaseStorage.getInstance().getReference();
 
+        backToMainBtn=findViewById(R.id.back_to_mainScreen_userList);
+        addBtn=findViewById(R.id.addItem_user_list);
+        searchBtn=findViewById(R.id.searchItem_user_list);
+        cartBtn=findViewById(R.id.cartItem_user_list);
+
         recyclerView=findViewById(R.id.recyclerview_my_list);
         noItemInShop=findViewById(R.id.noItemInMyList);
 
@@ -74,6 +88,11 @@ public class UserList extends AppCompatActivity {
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(UserList.this));
+
+        backToMainBtn.setOnClickListener(this);
+        addBtn.setOnClickListener(this);
+        searchBtn.setOnClickListener(this);
+        cartBtn.setOnClickListener(this);
 
         collectionReference.whereEqualTo("userId", UserApi.getInstance().getUserId())
                 .get()
@@ -175,5 +194,58 @@ public class UserList extends AppCompatActivity {
             }
         };
 
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.back_to_mainScreen_userList:
+                finish();
+                startActivity(tm_funtion.backToMain(UserList.this));
+                break;
+            case R.id.addItem_user_list:
+                finish();
+                startActivity(tm_funtion.addItem(UserList.this));
+                break;
+            case R.id.searchItem_user_list:
+                builder=new AlertDialog.Builder(UserList.this);
+                inflater= LayoutInflater.from(UserList.this);
+                View view1=inflater.inflate(R.layout.search_pop_up_box,null);
+
+                EditText editText = view1.findViewById(R.id.search_input);
+                Button cancel=view1.findViewById(R.id.cancel_search_popUp);
+                Button search=view1.findViewById(R.id.search_search_popUp);
+
+                builder.setView(view1);
+                dialog=builder.create();
+                dialog.show();
+
+                cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+                search.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String search=editText.getText().toString().trim();
+                        if(!search.isEmpty()){
+                            finish();
+                            Intent intent1=new Intent(UserList.this, Search_Item.class);
+                            intent1.putExtra("searchItem", search);
+                            startActivity(intent1);
+                        }else {
+                            Toast.makeText(UserList.this,"Type the item you want to search"
+                                    ,Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                break;
+            case R.id.cartItem_user_list:
+                finish();
+                startActivity(tm_funtion.itemCart(UserList.this));
+                break;
+        }
     }
 }

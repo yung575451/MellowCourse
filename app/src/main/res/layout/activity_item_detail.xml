@@ -44,12 +44,14 @@
                 app:srcCompat="@drawable/ic_plus_sign_mainscreen" />
 
             <ImageView
+                android:id="@+id/searchItem_item_detail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 app:srcCompat="@drawable/ic_search_normal" />
 
             <ImageView
+                android:id="@+id/cartItem_item_detail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dp"

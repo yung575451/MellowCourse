@@ -109,7 +109,6 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
                 builder=new AlertDialog.Builder(MainScreen.this);
                 inflater= LayoutInflater.from(MainScreen.this);
                 View view1=inflater.inflate(R.layout.search_pop_up_box,null);
-                searchItem.setBackgroundResource(R.drawable.ic_search_selected);
 
                 EditText editText = view1.findViewById(R.id.search_input);
                 Button cancel=view1.findViewById(R.id.cancel_search_popUp);

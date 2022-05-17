@@ -12,6 +12,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +31,7 @@ import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.storage.StorageReference;
 import com.hungphamcom.mellowcourse.MainScreen;
 import com.hungphamcom.mellowcourse.R;
+import com.hungphamcom.mellowcourse.Search_Item;
 import com.hungphamcom.mellowcourse.add_new_item;
 import com.hungphamcom.mellowcourse.funtions.TM_funtion;
 import com.squareup.picasso.Picasso;
@@ -39,7 +42,8 @@ import java.util.Map;
 public class item_detail extends AppCompatActivity implements View.OnClickListener {
     private ImageView backToMainBtn;
     private ImageView addItem;
-
+    private ImageView searchItem;
+    private ImageView cartItem;
 
     private String image;
     private ImageView imageUrl;
@@ -83,6 +87,8 @@ public class item_detail extends AppCompatActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_detail);
 
+        searchItem=findViewById(R.id.searchItem_item_detail);
+        cartItem=findViewById(R.id.cartItem_item_detail);
 
         itemName = findViewById(R.id.item_name_item_detail);
         imageUrl = findViewById(R.id.item_image_item_detail);
@@ -174,6 +180,8 @@ public class item_detail extends AppCompatActivity implements View.OnClickListen
 
         checkItemInWishList();
 
+        searchItem.setOnClickListener(this);
+        cartItem.setOnClickListener(this);
         backToMainBtn.setOnClickListener(this);
         addItem.setOnClickListener(this);
         addToWishList.setOnClickListener(this);
@@ -246,7 +254,47 @@ public class item_detail extends AppCompatActivity implements View.OnClickListen
             case R.id.add_to_cart_Btn_item_detail:
                 addToCart();
                 break;
+            case R.id.searchItem_item_detail:
+                builder=new AlertDialog.Builder(item_detail.this);
+                inflater= LayoutInflater.from(item_detail.this);
+                View view1=inflater.inflate(R.layout.search_pop_up_box,null);
+
+                EditText editText = view1.findViewById(R.id.search_input);
+                Button cancel=view1.findViewById(R.id.cancel_search_popUp);
+                Button search=view1.findViewById(R.id.search_search_popUp);
+
+                builder.setView(view1);
+                dialog=builder.create();
+                dialog.show();
+
+                cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+                search.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String search=editText.getText().toString().trim();
+                        if(!search.isEmpty()){
+                            finish();
+                            Intent intent1=new Intent(item_detail.this, Search_Item.class);
+                            intent1.putExtra("searchItem", search);
+                            startActivity(intent1);
+                        }else {
+                            Toast.makeText(item_detail.this,"Type the item you want to search"
+                                    ,Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                break;
+            case R.id.itemCart_searchItem:
+                finish();
+                startActivity(funtion.itemCart(item_detail.this));
+                break;
         }
+
     }
 
     private void buyItemCheck() {

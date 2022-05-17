@@ -57,6 +57,7 @@
         <entry key="..\:/download/MellowCourse-master/app/src/main/res/drawable/ic_emptystar_review_item_detail.xml" value="0.1" />
         <entry key="..\:/download/MellowCourse-master/app/src/main/res/drawable/ic_frame_48.xml" value="0.1105" />
         <entry key="..\:/download/MellowCourse-master/app/src/main/res/drawable/ic_fullstar_review_item_detail.xml" value="0.1" />
+        <entry key="..\:/download/MellowCourse-master/app/src/main/res/drawable/ic_group_13.xml" value="0.1" />
         <entry key="..\:/download/MellowCourse-master/app/src/main/res/drawable/ic_home_2.xml" value="0.1" />
         <entry key="..\:/download/MellowCourse-master/app/src/main/res/drawable/ic_plus_sign_mainscreen.xml" value="0.1105" />
         <entry key="..\:/download/MellowCourse-master/app/src/main/res/drawable/ic_search_normal.xml" value="0.1" />
@@ -76,8 +77,8 @@
         <entry key="..\:/download/MellowCourse-master/app/src/main/res/layout/activity_create_account.xml" value="0.1" />
         <entry key="..\:/download/MellowCourse-master/app/src/main/res/layout/activity_item_detail.xml" value="0.18" />
         <entry key="..\:/download/MellowCourse-master/app/src/main/res/layout/activity_main.xml" value="0.17604166666666668" />
-        <entry key="..\:/download/MellowCourse-master/app/src/main/res/layout/activity_main_screen.xml" value="0.22" />
-        <entry key="..\:/download/MellowCourse-master/app/src/main/res/layout/activity_search_item.xml" value="0.22" />
+        <entry key="..\:/download/MellowCourse-master/app/src/main/res/layout/activity_main_screen.xml" value="0.5" />
+        <entry key="..\:/download/MellowCourse-master/app/src/main/res/layout/activity_search_item.xml" value="0.2" />
         <entry key="..\:/download/MellowCourse-master/app/src/main/res/layout/activity_user_cart.xml" value="0.2" />
         <entry key="..\:/download/MellowCourse-master/app/src/main/res/layout/activity_user_list.xml" value="0.25" />
         <entry key="..\:/download/MellowCourse-master/app/src/main/res/layout/cart_menu_selected.xml" value="0.14055973266499583" />

@@ -47,12 +47,14 @@
                 app:srcCompat="@drawable/add_sign_selected" />
 
             <ImageView
+                android:id="@+id/searchItem_addItemScreen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dp"
                 app:srcCompat="@drawable/ic_search_normal" />
 
             <ImageView
+                android:id="@+id/itemCart_addItemScreen"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="5dp"

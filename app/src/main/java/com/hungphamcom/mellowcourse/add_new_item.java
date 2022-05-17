@@ -4,6 +4,7 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -12,8 +13,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -37,6 +40,7 @@ import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.hungphamcom.mellowcourse.funtions.TM_funtion;
 import com.hungphamcom.mellowcourse.model.Item;
 import com.hungphamcom.mellowcourse.ui.UserList;
 import com.hungphamcom.mellowcourse.util.UserApi;
@@ -51,7 +55,6 @@ public class add_new_item extends AppCompatActivity implements View.OnClickListe
     private ImageView addSign_add_item;
     private ImageView searchSign;
     private ImageView shopCart_add_item;
-    private ImageView notification_add_item;
 
     private ImageView addPhotoButton_add_item;
     private ImageView imageView;
@@ -79,6 +82,8 @@ public class add_new_item extends AppCompatActivity implements View.OnClickListe
     private Uri imageURI;
     private String image;
 
+    private TM_funtion tm_funtion=new TM_funtion();
+
     private DatabaseReference itemLive;
 
     private FirebaseAuth firebaseAuth;
@@ -91,6 +96,10 @@ public class add_new_item extends AppCompatActivity implements View.OnClickListe
 
     private CollectionReference collectionReference = db.collection("Item");
 
+    private AlertDialog.Builder builder;
+    private AlertDialog dialog;
+    private LayoutInflater inflater;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +109,9 @@ public class add_new_item extends AppCompatActivity implements View.OnClickListe
         checkImg=0;
 
         itemLive= FirebaseDatabase.getInstance().getReference().child("Item");
+
+        searchSign=findViewById(R.id.searchItem_addItemScreen);
+        shopCart_add_item=findViewById(R.id.itemCart_addItemScreen);
 
         storageReference = FirebaseStorage.getInstance().getReference();
         firebaseAuth = FirebaseAuth.getInstance();
@@ -123,6 +135,8 @@ public class add_new_item extends AppCompatActivity implements View.OnClickListe
         addPhotoButton_add_item.setOnClickListener(this);
         backToMainScreen.setOnClickListener(this);
         addItemBtn_add_item.setOnClickListener(this);
+        searchSign.setOnClickListener(this);
+        shopCart_add_item.setOnClickListener(this);
 
         mTakePhoto = registerForActivityResult(
                 new ActivityResultContracts.GetContent(),
@@ -198,6 +212,45 @@ public class add_new_item extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.back_to_main_screen_addItemScreen:
                 finish();
+                break;
+            case R.id.searchItem_addItemScreen:
+                builder=new AlertDialog.Builder(add_new_item.this);
+                inflater= LayoutInflater.from(add_new_item.this);
+                View view1=inflater.inflate(R.layout.search_pop_up_box,null);
+
+                EditText editText = view1.findViewById(R.id.search_input);
+                Button cancel=view1.findViewById(R.id.cancel_search_popUp);
+                Button search=view1.findViewById(R.id.search_search_popUp);
+
+                builder.setView(view1);
+                dialog=builder.create();
+                dialog.show();
+
+                cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+                search.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String search=editText.getText().toString().trim();
+                        if(!search.isEmpty()){
+                            finish();
+                            Intent intent1=new Intent(add_new_item.this, Search_Item.class);
+                            intent1.putExtra("searchItem", search);
+                            startActivity(intent1);
+                        }else {
+                            Toast.makeText(add_new_item.this,"Type the item you want to search"
+                                    ,Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                break;
+            case R.id.itemCart_addItemScreen:
+                finish();
+                startActivity(tm_funtion.itemCart(add_new_item.this));
                 break;
         }
     }

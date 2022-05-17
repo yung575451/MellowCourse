@@ -14,6 +14,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -35,8 +37,10 @@ import com.google.firebase.firestore.SetOptions;
 import com.google.firebase.storage.StorageReference;
 import com.hungphamcom.mellowcourse.MainScreen;
 import com.hungphamcom.mellowcourse.R;
+import com.hungphamcom.mellowcourse.Search_Item;
 import com.hungphamcom.mellowcourse.adapter.cartRecyclerAdapter;
 import com.hungphamcom.mellowcourse.adapter.shopItemRecyclerAdapter;
+import com.hungphamcom.mellowcourse.funtions.TM_funtion;
 import com.hungphamcom.mellowcourse.model.Item;
 import com.hungphamcom.mellowcourse.util.UserApi;
 
@@ -59,6 +63,8 @@ public class UserCart extends AppCompatActivity implements View.OnClickListener 
     private int totalPrice=0;
     private String userid= UserApi.getInstance().getUserId();
     private int pplPurchase;
+
+    private TM_funtion tm_funtion=new TM_funtion();
 
     private List<Item> itemList;
     private RecyclerView recyclerView;
@@ -198,9 +204,45 @@ public class UserCart extends AppCompatActivity implements View.OnClickListener 
         switch (view.getId()){
             case R.id.back_to_mainScreen_userCart:
                 finish();
+                startActivity(tm_funtion.backToMain(UserCart.this));
                 break;
             case R.id.buyBtn_user_cart:
                 buyItem();
+                break;
+            case R.id.search_user_cart:
+                builder=new AlertDialog.Builder(UserCart.this);
+                inflater= LayoutInflater.from(UserCart.this);
+                View view1=inflater.inflate(R.layout.search_pop_up_box,null);
+
+                EditText editText = view1.findViewById(R.id.search_input);
+                Button cancel=view1.findViewById(R.id.cancel_search_popUp);
+                Button search=view1.findViewById(R.id.search_search_popUp);
+
+                builder.setView(view1);
+                dialog=builder.create();
+                dialog.show();
+
+                cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+                search.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String search=editText.getText().toString().trim();
+                        if(!search.isEmpty()){
+                            finish();
+                            Intent intent1=new Intent(UserCart.this, UserCart.class);
+                            intent1.putExtra("searchItem", search);
+                            startActivity(intent1);
+                        }else {
+                            Toast.makeText(UserCart.this,"Type the item you want to search"
+                                    ,Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
                 break;
         }
     }
