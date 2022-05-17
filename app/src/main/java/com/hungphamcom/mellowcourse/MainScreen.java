@@ -20,6 +20,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.hungphamcom.mellowcourse.adapter.viewPagerAdapter;
 import com.hungphamcom.mellowcourse.fragment.HomeFragment;
+import com.hungphamcom.mellowcourse.funtions.TM_funtion;
 import com.hungphamcom.mellowcourse.ui.UserCart;
 import com.hungphamcom.mellowcourse.util.UserApi;
 
@@ -30,6 +31,7 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
     private TextView buyNowBtn;
     private ImageView addItem,cartItem;
     private UserApi userApi;
+    private TM_funtion funtion=new TM_funtion();
     private com.hungphamcom.mellowcourse.adapter.viewPagerAdapter viewPagerAdapter;
 
     @Override
@@ -84,14 +86,14 @@ public class MainScreen extends AppCompatActivity implements View.OnClickListene
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.logo_mainScreen:
-                mViewPager.setCurrentItem(0);
+                funtion.logoButton(mViewPager);
                 break;
             case R.id.addItem_mainScreen:
                 //Toast.makeText(this, "add Item has been pressed", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(MainScreen.this,add_new_item.class));
+                startActivity(funtion.addItem(MainScreen.this));
                 break;
             case R.id.itemCart_mainScreen:
-                startActivity(new Intent(MainScreen.this, UserCart.class));
+                startActivity(funtion.itemCart(MainScreen.this));
                 break;
         }
     }

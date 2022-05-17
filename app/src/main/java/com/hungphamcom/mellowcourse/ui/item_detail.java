@@ -30,6 +30,7 @@ import com.google.firebase.storage.StorageReference;
 import com.hungphamcom.mellowcourse.MainScreen;
 import com.hungphamcom.mellowcourse.R;
 import com.hungphamcom.mellowcourse.add_new_item;
+import com.hungphamcom.mellowcourse.funtions.TM_funtion;
 import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
@@ -60,6 +61,8 @@ public class item_detail extends AppCompatActivity implements View.OnClickListen
     private int reviewScore=0;
     private int numberPplReview=0;
     private int numberPplPurchase=0;
+
+    private TM_funtion funtion=new TM_funtion();
 
     //connect to fire store;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -199,16 +202,13 @@ public class item_detail extends AppCompatActivity implements View.OnClickListen
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back_to_mainScreen_itemDetail:
-                Intent intent=new Intent(item_detail.this
-                        , MainScreen.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
+                startActivity(funtion.backToMain(item_detail.this));
                 finish();
                 break;
             case R.id.addItem_item_detail:
                 finish();
                 Log.d("itemDetail", "onClick: " + "additem");
-                startActivity(new Intent(item_detail.this, add_new_item.class));
+                startActivity(funtion.addItem(item_detail.this));
                 break;
             case R.id.add_to_wishList_Btn_item_detail:
                 String check;

@@ -72,12 +72,6 @@
                 android:padding="5dp"
                 app:srcCompat="@drawable/cart_menu_selected" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                app:srcCompat="@drawable/ic_clarity_notification_line" />
-
 
         </LinearLayout>
 

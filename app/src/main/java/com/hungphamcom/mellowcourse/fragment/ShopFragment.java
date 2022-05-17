@@ -19,6 +19,8 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -47,6 +49,7 @@ public class ShopFragment extends Fragment {
     private shopItemRecyclerAdapter shopItemRecyclerAdapter;
     private shopItemRecyclerAdapter.RecyclerViewClickListener listener;
 
+    private DatabaseReference itemLive;
     private CollectionReference collectionReference=db.collection("Item");
     private TextView noItemInShop;
 
@@ -66,6 +69,8 @@ public class ShopFragment extends Fragment {
 
         noItemInShop=rootView.findViewById(R.id.noItemInShop);
         itemList=new ArrayList<>();
+
+        itemLive= FirebaseDatabase.getInstance().getReference().child("Item");
 
         recyclerView=rootView.findViewById(R.id.recyclerview_shop_fragment);
         recyclerView.setHasFixedSize(true);

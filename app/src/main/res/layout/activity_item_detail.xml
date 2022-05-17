@@ -55,13 +55,6 @@
                 android:padding="5dp"
                 app:srcCompat="@drawable/ic_frame_48" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                app:srcCompat="@drawable/ic_clarity_notification_line" />
-
-
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>

@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -25,6 +26,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -36,12 +39,12 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.hungphamcom.mellowcourse.model.Item;
 import com.hungphamcom.mellowcourse.ui.UserList;
-import com.hungphamcom.mellowcourse.ui.item_detail;
 import com.hungphamcom.mellowcourse.util.UserApi;
 import com.squareup.picasso.Picasso;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 
 public class add_new_item extends AppCompatActivity implements View.OnClickListener {
     private ImageView homeLogo_add_item;
@@ -54,6 +57,8 @@ public class add_new_item extends AppCompatActivity implements View.OnClickListe
     private ImageView imageView;
 
     private ProgressBar progressBar;
+    private String itemIdDetail;
+
     private String itemId;
 
     private TextView sellerName_add_item;
@@ -74,6 +79,8 @@ public class add_new_item extends AppCompatActivity implements View.OnClickListe
     private Uri imageURI;
     private String image;
 
+    private DatabaseReference itemLive;
+
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseUser user;
@@ -91,6 +98,8 @@ public class add_new_item extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_add_new_item);
 
         checkImg=0;
+
+        itemLive= FirebaseDatabase.getInstance().getReference().child("Item");
 
         storageReference = FirebaseStorage.getInstance().getReference();
         firebaseAuth = FirebaseAuth.getInstance();
@@ -139,7 +148,7 @@ public class add_new_item extends AppCompatActivity implements View.OnClickListe
             itemPrice_add_item.setText(String.valueOf(extras.getInt("itemPrice")));
             image=extras.getString("image");
             timeAdd=extras.getString("timeAdd");
-            itemId=extras.getString("itemId");
+            itemIdDetail=extras.getString("itemId");
 
             imageURI= Uri.parse(image);
             Picasso.get().load(image)
@@ -194,12 +203,13 @@ public class add_new_item extends AppCompatActivity implements View.OnClickListe
     }
 
     private void checkOpt() {
-        String checkBtn=addItemBtn_add_item.getText().toString().trim();
+        String checkBtn=addItemBtn_add_item.getText().toString().toLowerCase(Locale.ROOT);
         switch (checkBtn){
-            case "Add item":
+            case "add item":
                 addItem();
+                Toast.makeText(this, "add item", Toast.LENGTH_SHORT).show();
                 break;
-            case "Update Item":
+            case "update Item":
                 updateItem();
                 break;
         }
@@ -223,7 +233,17 @@ public class add_new_item extends AppCompatActivity implements View.OnClickListe
             HashMap<String,Integer> map1=new HashMap<>();
             map1.put("price",price);
 
-            collectionReference.whereEqualTo("itemId",itemId)
+            HashMap hashMap=new HashMap();
+
+            Item item=new Item();
+            item.setName(name);
+            item.setDescription(description);
+            item.setPrice(price);
+
+            hashMap.put("name",name);
+            itemLive.child(itemIdDetail).updateChildren(hashMap);
+
+            collectionReference.whereEqualTo("itemId",itemIdDetail)
                     .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -270,7 +290,7 @@ public class add_new_item extends AppCompatActivity implements View.OnClickListe
                                 HashMap<String,Integer> map1=new HashMap<>();
                                 map1.put("price",price);
 
-                                collectionReference.whereEqualTo("itemId",itemId)
+                                collectionReference.whereEqualTo("itemId",itemIdDetail)
                                         .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                     @Override
                                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -300,10 +320,23 @@ public class add_new_item extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    private void addItemsToLiveDataBase(Item item) {
+        itemLive.child(itemId).setValue(item).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                progressBar.setVisibility(View.INVISIBLE);
+                startActivity(new Intent(add_new_item.this
+                        , MainScreen.class));
+                finish();
+            }
+        });
+    }
+
     private void addItem() {
         String name = itemName_add_item.getText().toString().trim();
         int price = Integer.parseInt(itemPrice_add_item.getText().toString().trim());
         String description = itemDescription_add_item.getText().toString().trim();
+        Toast.makeText(this, "add", Toast.LENGTH_SHORT).show();
 
         progressBar.setVisibility(View.VISIBLE);
         final StorageReference filepath = storageReference
@@ -320,6 +353,7 @@ public class add_new_item extends AppCompatActivity implements View.OnClickListe
                         @Override
                         public void onSuccess(Uri uri) {
                             String imageUrl = uri.toString();
+                            itemId=String.valueOf(Timestamp.now().getSeconds());
 
                             Item item = new Item();
                             item.setName(name);
@@ -327,12 +361,15 @@ public class add_new_item extends AppCompatActivity implements View.OnClickListe
                             item.setDescription(description);
                             item.setImageUrl(imageUrl);
                             item.setTimeAdded(new Timestamp(new Date()));
-                            item.setItemId(String.valueOf(Timestamp.now().getSeconds()));
+                            item.setItemId(itemId);
                             item.setPurchase(0);
                             item.setReview(0);
                             item.setUsername(currentUserName);
                             item.setUserId(currentUserId);
                             item.setPplReview(0);
+
+
+                            Toast.makeText(add_new_item.this, "click", Toast.LENGTH_SHORT).show();
 
                             collectionReference.add(item).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                 @Override

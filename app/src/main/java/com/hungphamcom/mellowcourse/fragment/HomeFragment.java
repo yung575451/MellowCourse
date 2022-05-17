@@ -13,6 +13,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.hungphamcom.mellowcourse.R;
 import com.hungphamcom.mellowcourse.adapter.viewPagerAdapter;
+import com.hungphamcom.mellowcourse.funtions.TM_funtion;
 
 
 public class HomeFragment extends Fragment  {
@@ -43,7 +44,8 @@ public class HomeFragment extends Fragment  {
         buyNowBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                vp.setCurrentItem(1);
+                TM_funtion tm_funtion=new TM_funtion();
+                tm_funtion.logoButton(vp);
             }
         });
     }
