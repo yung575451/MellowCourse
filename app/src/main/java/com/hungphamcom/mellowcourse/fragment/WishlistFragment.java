@@ -89,6 +89,7 @@ public class WishlistFragment extends Fragment {
                                 list=(ArrayList<String>) document.get("itemId");
                                 if(list.size()==0){
                                     noItemInShop.setVisibility(View.VISIBLE);
+                                    return;
                                 }else {
                                     noItemInShop.setVisibility(View.INVISIBLE);
                                 }

@@ -23,6 +23,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -34,8 +35,11 @@ import com.hungphamcom.mellowcourse.R;
 import com.hungphamcom.mellowcourse.Search_Item;
 import com.hungphamcom.mellowcourse.add_new_item;
 import com.hungphamcom.mellowcourse.funtions.TM_funtion;
+import com.hungphamcom.mellowcourse.model.Item;
+import com.hungphamcom.mellowcourse.util.UserApi;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -51,6 +55,7 @@ public class item_detail extends AppCompatActivity implements View.OnClickListen
     private TextView sellerName;
     private TextView itemDescription;
     private int review;
+    private String ownerId;
     private String userId;
     private TextView pplReview;
     private TextView pplPurchase;
@@ -67,6 +72,8 @@ public class item_detail extends AppCompatActivity implements View.OnClickListen
     private int numberPplPurchase=0;
 
     private TM_funtion funtion=new TM_funtion();
+
+    private ArrayList<String> list;
 
     //connect to fire store;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -86,6 +93,8 @@ public class item_detail extends AppCompatActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_detail);
+
+        ownerId= UserApi.getInstance().getUserId();
 
         searchItem=findViewById(R.id.searchItem_item_detail);
         cartItem=findViewById(R.id.cartItem_item_detail);
@@ -192,14 +201,22 @@ public class item_detail extends AppCompatActivity implements View.OnClickListen
 
     private void checkItemInWishList() {
         FirebaseFirestore.getInstance()
-                .collection("WishList")
-                .whereArrayContains("itemId", itemId)
-                .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                .collection("WishList").document(ownerId)
+                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                if (!queryDocumentSnapshots.isEmpty()) {
-                    addToWishList.setText("Remove from WishList");
-                    wishListIndicator.setBackgroundResource(R.drawable.ic_wish_star_item_detail_full);
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+                    DocumentSnapshot documentSnapshot=task.getResult();
+                    if(documentSnapshot.exists()){
+                        list=(ArrayList<String>) documentSnapshot.get("itemId");
+                    }
+                    for(int i=0;i<list.size();i++){
+                        String x= list.get(i);
+                        if(x.equals(itemId)){
+                            addToWishList.setText("Remove from WishList");
+                            wishListIndicator.setBackgroundResource(R.drawable.ic_wish_star_item_detail_full);
+                        }
+                    }
                 }
             }
         });
@@ -446,7 +463,7 @@ public class item_detail extends AppCompatActivity implements View.OnClickListen
     }
 
     private void addToCart() {
-        userCart.document(userId).update("itemId",FieldValue.arrayUnion(itemId)).addOnCompleteListener(new OnCompleteListener<Void>() {
+        userCart.document(ownerId).update("itemId",FieldValue.arrayUnion(itemId)).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
@@ -454,8 +471,9 @@ public class item_detail extends AppCompatActivity implements View.OnClickListen
                 }else {
                     Map<String, String> updateScore=new HashMap<>();
                     updateScore.put("itemId",itemId);
-                    userCart.document(userId).set(updateScore);
+                    userCart.document(ownerId).set(updateScore);
                     Toast.makeText(item_detail.this, "Add to Cart success", Toast.LENGTH_SHORT).show();
+                    userCart.document(ownerId).update("itemId",FieldValue.arrayUnion(itemId));
                 }
 
             }
@@ -468,18 +486,28 @@ public class item_detail extends AppCompatActivity implements View.OnClickListen
     }
 
     private void removeItemWishList() {
-        userWishList.document(userId).update("itemId", FieldValue.arrayRemove(itemId));
+        userWishList.document(ownerId).update("itemId", FieldValue.arrayRemove(itemId));
     }
 
     private void addToWishList() {
-        userWishList.document(userId).update("itemId", FieldValue.arrayUnion(itemId)).addOnCompleteListener(new OnCompleteListener<Void>() {
+        userWishList.document(ownerId).update("itemId",FieldValue.arrayUnion(itemId)).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                Toast.makeText(item_detail.this, "Add to WishList success", Toast.LENGTH_SHORT).show();
+                if(task.isSuccessful()){
+                    Toast.makeText(item_detail.this, "Add to WishList success", Toast.LENGTH_SHORT).show();
+                }else {
+                    Map<String, String> updateScore=new HashMap<>();
+                    updateScore.put("itemId",itemId);
+                    userWishList.document(ownerId).set(updateScore);
+                    Toast.makeText(item_detail.this, "Add to WishList success", Toast.LENGTH_SHORT).show();
+                    userWishList.document(ownerId).update("itemId",FieldValue.arrayUnion(itemId));
+                }
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
+
             }
         });
     }
