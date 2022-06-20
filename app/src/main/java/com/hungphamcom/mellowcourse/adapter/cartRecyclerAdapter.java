@@ -29,15 +29,12 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 public class cartRecyclerAdapter extends RecyclerView.Adapter<cartRecyclerAdapter.ViewHolder> {
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private Context context;
     private List<Item> itemList;
     private cartRecyclerAdapter.RecyclerViewClickListener listener;
     private AlertDialog.Builder builder;
     private AlertDialog dialog;
     private LayoutInflater inflater;
-
-    private CollectionReference collectionReference=db.collection("Item");
 
     public cartRecyclerAdapter(Context context, List<Item> itemList, cartRecyclerAdapter.RecyclerViewClickListener listener){
         this.context=context;

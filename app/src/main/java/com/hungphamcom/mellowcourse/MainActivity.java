@@ -33,7 +33,16 @@ import com.hungphamcom.mellowcourse.model.U_Status;
 import com.hungphamcom.mellowcourse.util.UserApi;
 import com.squareup.picasso.Picasso;
 
+import org.opencv.android.OpenCVLoader;
+
 public class MainActivity extends AppCompatActivity {
+    static {
+        if(OpenCVLoader.initDebug()){
+            Log.d("MainActivity", "static initializer: OpenCV is loaded");
+        }else{
+            Log.d("MainActivity", "static initializer: OpenCV is not loaded");
+        }
+    }
     private EditText email;
     private EditText password;
     private ProgressBar progressBar;
